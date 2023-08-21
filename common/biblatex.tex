@@ -1,0 +1,19 @@
+% !TEX encoding   = UTF8
+% !TEX spellcheck = en_EN
+
+\usepackage{csquotes}
+\usepackage[backend=biber,%
+            bibencoding=utf8,%
+            citestyle=gost-inline-min,%gost-numeric,%
+            bibstyle=gost-numeric,%
+            sorting=none,%
+            defernumbers=true,%
+            sortcites=true,%
+            doi=false,%
+            isbn=false,%
+            autolang=langname]{biblatex}
+
+
+\DeclareFieldFormat{url}{
+  \mkbibacro{URL}\addcolon\space\href{#1}{\nolinkurl{\thefield{urlraw}}}
+}

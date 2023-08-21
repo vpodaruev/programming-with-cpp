@@ -1,0 +1,160 @@
+% !TEX encoding   = UTF8
+% !TEX spellcheck = en_US
+
+%%% Figures %%%
+
+\graphicspath{{images/}{../}{../../}}         % Пути к изображениям
+
+
+
+%%% Page layout %%%
+
+\geometry{a4paper,top=2cm,bottom=2cm,left=2.5cm,right=1cm} %,showframe,nofoot,nomarginpar
+\setlength{\topskip}{0pt}
+%\setlength{\footskip}{12.3pt} % to prevent warning
+
+
+
+%%% Line spacing %%%
+
+%\DoubleSpacing*
+%\OnehalfSpacing*
+%\setSpacing{1.42}   % like MS Word, may be include with previous line
+
+
+
+%%% Align and hyphenation %%%
+
+\tolerance 1414
+\hbadness 1414
+\emergencystretch 1.5em  % in case of problems the first parameter for tuning
+\hfuzz 0.3pt
+\vfuzz \hfuzz
+%\raggedbottom
+%\sloppy
+\clubpenalty=10000
+\widowpenalty=10000
+
+\begin{russian}
+  \hyphenation{не-пе-ре-се-каю-щих-ся}
+\end{russian}
+
+
+\setlength{\epigraphwidth}{0.3\textwidth}
+\renewcommand{\epigraphsize}{\normalsize}
+\epigraphrule = 0pt
+
+\newfontfamily\epigraphfont[Scale=MatchLowercase]{TeX Gyre Chorus}
+
+
+
+%%% Outline %%%
+
+\renewcommand{\cftchapterdotsep}{\cftdotsep}
+
+%\setrmarg{2.55em plus1fil}
+\renewcommand{\cftchapterpagefont}{\normalfont}
+\renewcommand{\cftchapterleader}{\cftdotfill{\cftchapterdotsep}}
+%\renewcommand{\cftchapterfont}{}
+
+\renewcommand\cftchapteraftersnum{.\space}
+\renewcommand\cftsectionaftersnum{.\space}
+\renewcommand\cftsubsectionaftersnum{.\space}
+\renewcommand\cftsubsubsectionaftersnum{.\space}
+\AtBeginDocument{%                                 % without this polyglossia make it
+  \setsecnumformat{\csname the#1\endcsname.\space}
+}
+
+\renewcommand*{\cftappendixname}{\appendixname\space}
+
+
+
+%%% Headlines %%%
+
+\newcommand*{\headlinefont}{\normalfont\itshape\footnotesize\rmfamily}
+
+\newcommand*{\footer}[1]{%
+  \begin{tikzpicture}[baseline=\baselineskip,font=\headlinefont]
+    \node[text=gray] {#1};
+  \end{tikzpicture}%
+}
+
+\newcommand*{\footerleft}{\hspace{-1.5cm}\footer{\paperDepartmentShort{}, \paperOrganizationShort --- \paperTitle}}
+
+\newcommand*{\footerright}{\footer{\paperAuthor, \paperYear}}
+
+\makeoddhead{ruled}{\headlinefont \leftmark}{}{\headlinefont \rightmark}
+\makeoddfoot{ruled}{\footerleft}{\thepage}{\footerright}
+\makeoddfoot{plain}{\footerleft}{\thepage}{\footerright}
+\pagestyle{ruled}
+
+
+
+%%% Headings %%%
+
+\chapterstyle{hangnum}
+
+\settocdepth{subsection}
+
+
+\newcommand*\AbstractSection[1]{%
+  \section*{#1}
+  \addcontentsline{toc}{section}{\numberline\ #1}
+}
+
+\newcommand*\WhatToReadSection{\AbstractSection{Что читать}}
+\newcommand*\ExercisesSection{\AbstractSection{Упражнения}}
+\newcommand*\TaskSection{\AbstractSection{Задание}}
+
+
+
+%%% Counters %%%
+
+\counterwithout{equation}{chapter}
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
+
+
+
+%%% Proper appendix numbering %%%
+
+\makeatletter
+\def\russian@Alph#1{\ifcase#1\or
+   А\or Б\or В\or Г\or Д\or Е\or Ж\or
+   И\or К\or Л\or М\or Н\or
+   П\or Р\or С\or Т\or У\or Ф\or Х\or
+   Ц\or Ш\or Щ\or Э\or Ю\or Я\else\xpg@ill@value{#1}{russian@Alph}\fi}
+\def\russian@alph#1{\ifcase#1\or
+   а\or б\or в\or г\or д\or е\or ж\or
+   и\or к\or л\or м\or н\or
+   п\or р\or с\or т\or у\or ф\or х\or
+   ц\or ш\or щ\or э\or ю\or я\else\xpg@ill@value{#1}{russian@alph}\fi}
+\makeatother
+
+
+
+%%% Misc %%%
+
+\newcommand*{\latexurl}{https://www.latex-project.org}
+\newcommand*{\yadiskurl}{https://yadi.sk/d/XiUj9ZsNf3xHJ}
+\newcommand*{\mingwurl}{https://github.com/niXman/mingw-builds-binaries/releases/download/12.2.0-rt_v10-rev0/x86_64-12.2.0-release-posix-seh-rt_v10-rev0.7z}
+\newcommand*{\qtcreatorurl}{https://download.qt.io/official_releases/qtcreator/8.0/8.0.1/qt-creator-opensource-windows-x86_64-8.0.1.exe}
+\newcommand*{\giturl}{https://git-scm.com/download/win}
+\newcommand*{\smartgiturl}{https://www.syntevo.com/smartgit/download}
+\newcommand*{\typingtutorurl}{https://sense-lang.org/typing/tutor/keyboarding.php}
+\newcommand*{\pythonurl}{https://www.python.org}
+\newcommand*{\matplotliburl}{https://matplotlib.org}
+
+\newcommand*{\yadisk}[1]{\name{\href{\yadiskurl}{яндекс-диск}/#1}}
+\newcommand*{\GraphViz}{\href{http://www.graphviz.org}{\name{GraphViz}}}
+
+\newcommand*{\GCC}{\textsf{\scshape gcc}}
+\newcommand*{\GDB}{\textsf{\scshape gdb}}
+\newcommand*{\git}{\texttt{\small Git}}
+
+\newcommand*{\hard}{\makebox[0pt]{\hspace{-1.5\labelsep}\ensuremath{\mathsurround=0pt ^{\star}}}}
+\newcommand*{\HardChapter}[1]{\chapter{\(^★\)#1}}
+\newcommand*{\HardSection}[1]{\section{\(^★\)#1}}
+\newcommand*{\HardSubsection}[1]{\subsection{\(^*\)#1}}
+
+\newcommand*{\textbookref}[1]{\textit{#1}}

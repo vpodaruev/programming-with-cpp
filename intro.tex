@@ -1,0 +1,107 @@
+% !TEX encoding   = UTF8
+% !TEX spellcheck = ru_RU
+% !TEX root = ../seminars.tex
+
+%%================
+\chapter{Введение}
+%%================
+
+%%=====================
+\section{Цели и задачи}
+%%=====================
+\textit{Усвоить основы разработки, тестирования и отладки программ, базовые конструкции языка \lang{C++} и элементы стандартной библиотеки и получить практические навыки их использования при решении ряда простых и более сложных задач.}
+
+%%==========================
+\paragraph{Структура курса.}
+%%==========================
+\begin{itemfeature}
+  \item О курсе в целом.
+  \item Взаимосвязь с другими курсами.
+
+  \begin{flushleft}\hspace{-4em}\begin{tikzpicture}[node font=\small, >=Stealth]
+    \graph [layered layout, components go right top aligned, layer sep=1em]
+    {
+      AppliedTasks/{Прикладные задачи} [blue, draw=blue, dashed, rounded corners] // [layered layout] {"Аэродинамика", "Динамика полёта", "Прочность", "Проектирование"};
+
+      AppliedSoftware/{Прикладное программное обеспечение} [blue, draw=blue, dashed, rounded corners] // [layered layout, edge=white] {
+        OpenFoam, SU2, Gmsh, FreeCAD, ParaView
+      };
+
+      OS/{Операционные системы} [blue, draw=blue, dashed, rounded corners, edge=black] // [tree layout] {
+        Unix -> {
+          Linux -> Android, FreeBSD -> {MacOS, iOS}, Solaris;
+        },
+        Windows
+      };
+
+      ComputerArchitecture/{Архитектура компьютера} [blue, draw=blue, dashed, rounded corners] // [layered layout, edge=<-] {
+        "Архитектура и язык ассемблера"
+        -> "Микроархитектура"
+        -> "<<железо>>"
+      };
+
+      ComputerLanguages/{Языки программирования} [blue, draw=blue, dashed, rounded corners] // [layered layout, components go right top aligned, edge={<-, white}] {
+        {Python, Java, PHP, HTML, Perl}
+        -> {C++, Rust, ObjectiveC[as={Objective C}], Fortran}
+        -> {C, Forth, Pascal}
+      };
+
+      Algorithms/{Алгоритмы и структуры данных} [blue, draw=blue, dashed, rounded corners] // [layered layout, edge=white] {
+        {"Двоичный поиск", "Деревья"}
+        -> {"Сортировка", "Хэш-таблицы"}
+        -> {"Волновой алгоритм", "Графы"}
+      };
+
+      AppliedTasks ->[white] AppliedSoftware ->[white] {OS, ComputerLanguages} ->[white] {ComputerArchitecture, Algorithms};
+    };
+  \end{tikzpicture}\end{flushleft}
+
+  \item Контрольно-проверочные мероприятия.
+\end{itemfeature}
+
+
+
+%%===========================
+\section{Основная литература}
+%%===========================
+\cite{Stroustrup:2016:ru}
+
+\nocite{Kernighan:2004:ru, Meyers:2006:ru, Meyers:2000:ru, Meyers:2002:ru, Meyers:2016:ru, Josuttis:2014:ru, Stroustrup:2006:ru, Stroustrup:2013:en}
+
+
+
+
+%%===========================
+\section{Материалы и задания}
+%%===========================
+Значительная часть обучающих упражнений и заданий содержится в книге Бьярне Страуструпа. Дополнительные материалы размещены на \href{\yadiskurl}{яндекс-диске\footnote{\nolinkurl{\yadiskurl}}}:
+\begin{itemfeature}
+  \item \codebf{books} "--- основная и дополнительная литература;
+  \item \codebf{cpp-lectures} "--- лекционные материалы;
+  \item \codebf{cpp-seminars} "--- семинарские материалы;
+  \begin{itemize}
+  	\item \codebf{/examples} "--- исходный код примеров, которые разбираются на занятиях;
+  	\item \codebf{/exercises} "--- упражнения с исправлением исходного кода;
+  	\item \codebf{/how-to-s} "--- графические инструкции по настройке ПО;
+  	\item \codebf{/libraries} "--- библиотеки, которые используются на занятиях;
+  	\item \codebf{/program.pdf} "--- программа курса, темы зачёта;
+  	\item \codebf{/progress.pdf} "--- планы, успеваемость и проверочные мероприятия;
+  	\item \codebf{/seminars.pdf} "--- вспомогательная методичка по материалам занятий.
+  \end{itemize}
+\end{itemfeature}
+
+
+
+%%===============================
+\section{Программное обеспечение}
+%%===============================
+Интегрированная среда разработки:
+\begin{itemfeature}
+  \item текстовый редактор,
+  \item компилятор языка \lang{C++} (с поддержкой стандарта \lang{C++14} или выше),
+  \item редактор связей,
+  \item средства сборки,
+  \item средства отладки.
+\end{itemfeature}
+
+Инструкции по установке и настройке рабочей среды размещены в приложении на странице~\pageref{sect:workEnv}.

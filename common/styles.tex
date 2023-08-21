@@ -1,0 +1,211 @@
+% !TEX encoding   = UTF8
+% !TEX spellcheck = en_US
+
+
+%%% Template %%%
+
+\DeclareRobustCommand{\todo}{\textcolor{red}}
+
+\AtBeginDocument{%
+  \setlength{\parindent}{2.5em}
+}
+
+
+
+%%% Encondings and fonts %%%
+
+\setmainlanguage[babelshorthands=true]{russian}
+\setotherlanguage{english}
+
+\setmonofont{Source Code Pro}
+\newfontfamily\cyrillicfonttt{Source Code Pro}
+
+\defaultfontfeatures{Ligatures=TeX}  % NB! monofont settings should be before this
+
+\setmainfont{STIX Two Text}
+\newfontfamily\cyrillicfont{STIX Two Text}
+
+\setsansfont{Source Sans 3}
+\newfontfamily\cyrillicfontsf{Source Sans 3}
+
+\setmathfont{STIX Two Math}
+\newfontfamily\cyrillicfontmf{STIX Two Math}
+
+
+
+%%% Captions %%%
+
+\setlength{\abovecaptionskip}{0pt}
+\setlength{\belowcaptionskip}{0pt}
+
+\captionwidth{\linewidth}
+\normalcaptionwidth
+
+
+
+%%% Figures %%%
+
+\setfloatadjustment{figure}{%
+  \setlength{\abovecaptionskip}{0pt}
+  \setlength{\belowcaptionskip}{0pt}
+  \precaption{}
+  \captionnamefont{\normalfont\normalsize}
+  \captiondelim{~--- }
+  \captionstyle[\centering]{\centering}
+  \captiontitlefont{\normalfont\normalsize}
+  \postcaption{}
+}
+
+
+
+%%% Subfigures captions %%%
+
+\newsubfloat{figure}
+\renewcommand{\thesubfigure}{\asbuk{subfigure}}
+\subcaptionsize{\normalsize}
+\subcaptionlabelfont{\normalfont}
+\subcaptionfont{\!\!) \normalfont}  % round bracket after a letter
+\subcaptionstyle{\centering}
+
+
+
+%%% Tables %%%
+
+\setfloatlocations{table}{!h}
+
+
+%%% Hyper references settings %%%
+
+\hypersetup{
+  unicode,
+  linktocpage=true,
+%  linktoc=all,                % both the section and page part are links
+%  pdfpagelabels=false,
+  plainpages=false,
+  colorlinks,
+  linkcolor={linkcolor},
+  citecolor={citecolor},
+  urlcolor={urlcolor},
+%  hidelinks,
+  pdftitle={\paperTitle},
+  pdfauthor={\paperAuthor},
+  pdfsubject={\paperSubject},
+  pdfkeywords={\paperKeywords},
+  pdflang={ru},
+}
+
+
+
+%%% Lists %%%
+
+\renewcommand{\labelitemi}{\normalfont\bfseries{--}}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\theenumi)}
+
+\makeatletter
+\AddEnumerateCounter{\Asbuk}{\russian@Alph}{Щ}
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ}
+\makeatother
+
+%\renewcommand{\theenumi}{\asbuk{enumi}}
+%\renewcommand{\labelenumi}{\theenumi)}
+
+\renewcommand{\theenumii}{\asbuk{enumii}}
+\renewcommand{\labelenumii}{\theenumii)}
+
+\renewcommand{\theenumiii}{\arabic{enumiii}}
+\renewcommand{\labelenumiii}{\theenumiii)}
+
+\setlist{%
+  nosep,%
+  labelindent=\parindent, leftmargin=*,%
+  topsep=\medskipamount, itemsep=\smallskipamount%
+}
+
+\newlist{enumIssue}{enumerate}{1}
+\setlist[enumIssue]{label=\Asbuk*., ref=\Asbuk*}
+
+\newlist{enumissue}{enumerate}{1}
+\newlist{enumissue*}{enumerate*}{1}
+\setlist[enumissue,enumissue*]{label=\textit{\asbuk*}), ref=\textit{\asbuk*}}
+
+\newlist{itemfeature}{itemize}{1}
+\setlist[itemfeature]{label=--, topsep=\medskipamount}
+
+\newlist{exercise}{enumerate}{1}
+\setlist[exercise,1]{label={\arabic*.}, ref={\arabic*}, labelindent=0pt, widest={99}, itemsep=\bigskipamount, topsep=\bigskipamount}
+
+
+
+%%% Listings %%%
+
+\usemintedstyle{manni}
+
+\renewcommand{\theFancyVerbLine}{%
+  \textcolor{gray}{\tiny\arabic{FancyVerbLine}}%
+}
+
+\newmintinline{c}{fontsize=\small}
+\newmintinline{cpp}{fontsize=\small}
+\newmintinline{gas}{fontsize=\small}
+\newmintinline{text}{fontsize=\small}
+
+\newmint[cc]{c}{fontsize=\small, escapeinside=||}
+\newmint{cpp}{fontsize=\small}
+\newmint{js}{fontsize=\small}
+\newmint{gas}{fontsize=\small}
+\newmint[txt]{text}{fontsize=\small}
+\newmint{console}{fontsize=\small}
+\newmint[precomment]{text}{fontsize=\footnotesize, formatcom=\color{cyan}}
+
+\newminted{c}{linenos, fontsize=\small, numbersep=0.2em, escapeinside=||}
+\newminted{cpp}{linenos, fontsize=\small, numbersep=0.2em}
+\newminted{gas}{linenos, fontsize=\small, numbersep=0.2em, tabsize=2}
+\newminted{text}{fontsize=\small, tabsize=2}
+\newminted{console}{fontsize=\small, tabsize=2}
+
+\newmintedfile{c}{linenos, fontsize=\small, numbersep=0.2em}
+\newmintedfile{cpp}{linenos, fontsize=\small, numbersep=0.2em}
+\newmintedfile{js}{linenos, fontsize=\small, numbersep=0.2em}
+\newmintedfile{gas}{linenos, fontsize=\small, numbersep=0.2em, tabsize=2}
+\newmintedfile{objdump}{linenos, fontsize=\small, numbersep=0.2em, tabsize=2, escapeinside=||}
+\newmintedfile{text}{fontsize=\small, tabsize=2}
+\newmintedfile{console}{fontsize=\small, tabsize=2}
+
+
+\newminted[precode]{text}{fontsize=\footnotesize, formatcom=\color{cyan}}
+
+
+
+%%% General layout %%%
+
+\DeclareRobustCommand*{\name}{\texttt}
+\DeclareRobustCommand*{\code}[1]{\name{\small #1}}
+\DeclareRobustCommand*{\codebf}[1]{\code{\bfseries #1}}
+\DeclareRobustCommand*{\lang}[1]{\name{#1}}
+
+\newcommand*{\comm}[1]{{\color{cyan}\ttfamily\footnotesize\itshape #1}}
+
+\newcommand*{\styleans}[1]{\color{cyan}\underline{\color{gray}\ttfamily{}#1}}
+\newcommand*{\showans}[1]{\phantom{#1}}
+\newcommand*{\ansx}[1]{}
+\newcommand*{\ansdots}[1]{\textcolor{cyan}{\ttfamily ...}}
+
+\newcommand*{\ansfwnostar}[2]{\styleans{\makebox[#1][l]{\showans{#2}}}}
+\newcommand*{\ansfwstar}[2]{\styleans{\makebox[#1][l]{\color{black}#2}}}
+\newcommand*{\ansvwnostar}[1]{\styleans{\showans{#1}}}
+\newcommand*{\ansvwstar}[1]{\styleans{\color{black}#1}}
+
+\makeatletter
+\newcommand*{\ansfw}{\@ifstar\ansfwstar\ansfwnostar}
+\newcommand*{\ansvw}{\@ifstar\ansvwstar\ansvwnostar}
+\makeatother
+
+\newcommand*{\ArrowTo}[1]{%
+  \tikz[baseline=#1]{
+    \draw[white, -{Stealth[black, length=18pt, open]}] (0,0) -- (0.01,0)
+  }%
+}
+
+\newcommand*{\mystyle}[1]{\textit{\ttfamily\footnotesize{}#1}}

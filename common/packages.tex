@@ -1,0 +1,70 @@
+% !TEX encoding   = UTF8
+% !TEX spellcheck = en_US
+
+
+%%% Page layout %%%
+\usepackage{pdflscape}
+\usepackage{geometry}
+
+%%% Mathematics %%%
+\usepackage{amsthm,amsfonts,amsmath,amscd}
+\usepackage{mathtools}             % Add environment 'multlined'
+\usepackage{dsfont}
+\usepackage{unicode-math}
+
+%%% Encodings and fonts %%%
+\usepackage{polyglossia}[2014/05/21]  % Automatically load 'fontspec'
+
+%%% Paragraph layout %%%
+\usepackage{indentfirst}
+\usepackage{epigraph}
+\usepackage[style=french]{csquotes}
+
+%%% Colors %%%
+\usepackage[svgnames,table,hyperref]{xcolor} %,cmyk
+
+%%% Tables %%%
+\usepackage{longtable,ltcaption}
+\usepackage{multirow,makecell}     % Advanced formatting
+\usepackage{tabu,tabulary}         % Automatic columns width
+\usepackage{array}
+\usepackage{hhline}
+\usepackage{multicol}
+
+%%% General layout %%%
+\usepackage{soulutf8}              % Underlying with hyphenation
+\usepackage{icomma}
+\usepackage{calc}
+\usepackage[normalem]{ulem}
+
+%%% Hyper references %%%
+\usepackage{hyperref}
+
+%%% Figures %%%
+\usepackage[export]{adjustbox}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,calc}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{shapes,shapes.misc}
+\usetikzlibrary{graphs, graphdrawing}
+\usegdlibrary{trees, layered}
+\usepackage{wrapfig}
+
+%%% Lists %%%
+\usepackage[inline]{enumitem}
+
+%%% Embedded languages %%%
+\usepackage[usefamily={py,sympy},rerun=always]{pythontex}
+
+%%% Listings %%%
+\usepackage{verbatim}
+\usepackage{minted}
+\usepackage{listings}
+\lccode`\~=0\relax                 % Fix \MakeLowercase etc. with (xe|lua)latex
+
+%%% Smart references %%%
+%\usepackage{cleveref}
+
+%%% Style features %%%
+\usepackage{lua-ul}
