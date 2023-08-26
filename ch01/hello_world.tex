@@ -1,0 +1,313 @@
+% !TEX encoding   = UTF8
+% !TEX spellcheck = ru_RU
+% !TEX root = ../seminars.tex
+
+%%=====================
+\chapter{Hello, World!}
+%%=====================
+
+%%==================================================
+\section{Архитектура Фон-Неймана, уровни абстракции}
+%%==================================================
+Схематическое устройство компьютера. Алгоритмы и языки программирования. Абстракция от~реального <<железа>>.
+
+
+
+%%=================
+\section{Программы}
+%%=================
+\lang{С++}\footcite{Stroustrup:2019:ru} является компилируемым языком. Для работы программы её исходный текст должен быть обработан с~помощью компилятора, который создаёт объектные файлы, объединяемые компоновщиком в~выполнимую программу. Обычно программы на~языке \lang{С++} состоят из~многих файлов с~исходными текстами (именуемыми просто \textit{исходными файлами}).
+
+\begin{center}\begin{tikzpicture}[node font=\small, >=Stealth, line width=1pt]
+    \graph [grow right sep, left anchor=east, right anchor=west, nodes=draw] {
+    "файл1.cpp" -> c1/{компиляция} [ellipse] -> "файл1.o" ->[right anchor=north west] "компоновка" [ellipse, yshift=-2.5ex] -> "выполнимый файл"[yshift=-2.5ex];
+    "файл2.cpp" -> c2/{компиляция} [ellipse] -> "файл2.o" ->[right anchor=south west] "компоновка";
+    };
+\end{tikzpicture}\end{center}
+
+Выполнимая программа создаётся для~определённой комбинации аппаратного обеспечения и операционной системы; её нельзя просто перенести, скажем, из~компьютера \name{Мac} в~компьютер с~\name{Windows}. Говоря о~переносимости программ \lang{С++}, мы обычно имеем в~виду переносимость исходного кода, т.\,е. исходный код может быть успешно скомпилирован и выполняться в~разных
+системах.
+
+Стандарт \name{ISO} \lang{С++} определяет два типа сущностей.
+\begin{itemize}
+\item \textit{Фундаментальные возможности языка}, такие как встроенные типы (например, \code{char} и \code{int}) или циклы (например, инструкции \code{for} и \code{while}).
+
+\item \textit{Компоненты стандартных библиотек}, такие как контейнеры (например, \code{vector}, и \code{map}) или операции ввода--вывода (например, \code{<<} и \code{getline()}).
+\end{itemize}
+
+Компоненты стандартной библиотеки представляют собой совершенно обычный код \code{С++}, предоставляемый каждой реализацией языка. То есть стандартная библиотека \code{С++} может быть реализована в~самом \code{С++} (и реализуется "--- с~очень небольшим использованием машинного кода для~таких вещей, как переключение контекста потока). Это означает, что \code{С++} достаточно выразителен и эффективен для~самых сложных задач системного программирования.
+
+\code{С++} является статически типизированным языком, т.е. тип каждой сущности (например, объекта, значения, имени или выражения) должен быть известен компилятору в~точке использования. Тип объекта определяет набор применимых к~нему операций.
+
+
+
+%%===========================
+\section{Структура каталогов}
+%%===========================
+Настоятельно рекомендуем упорядочивать файлы. Например, для семинарских программ и проектов можно использовать следующую структуру:
+\begin{flushleft}\begin{tikzpicture}[node font=\small\ttfamily]
+		\matrix[row sep=0.2ex, column sep=0.5em]
+		{
+			\node (root) {projects/}; &  & &[-5em] \node[right] {\rmfamily все программы и проекты}; \\
+			& \node[right] (sem1) {01/}; & & \node[right] {\rmfamily первое занятие}; \\
+			& & \node[right] (hello) {hello.cpp}; & \\
+			& \node[right] (sem2) {02/}; & & \node[right] {\rmfamily второе занятие}; \\
+			& & \node[right] (test1) {empty.txt}; & \\
+			& & \node[right] (lsm) {least\_squares.cpp}; & \\
+			& & \node[right] (test2) {line\_approx.txt}; & \\
+			& & \node[right] (test3) {line\_exact.txt}; & \\
+			& & \node[right] (plot) {plot.py}; & \\
+			& \node[right] {\ldots}; & & \\
+			& \node[right] (bin) {bin/}; & & \node[right] {\rmfamily исполняемые файлы}; \\
+			& \node[right] (lib) {lib/}; & & \node[right] {\rmfamily общие файлы и библиотеки}; \\
+			& & \node[right] (graphlib) {Graph\_lib/}; & \\
+			& & \node[right] (std) {std\_lib\_facilities.h}; & \\
+			& & \node[right] {\ldots}; & \\
+			& \node[right] (task1) {task-1/}; & & \\
+			& \node[right] (task2) {task-2/}; & & \\
+			& \node[right, text width=4em] (git) {.git/}; & & \node[right] {\rmfamily репозиторий системы контроля версий}; \\
+			& \node[right] (format) {.clang-format}; & & \node[right] {\rmfamily стиль оформления кода}; \\
+			& \node[right] (ignore) {.gitignore}; & & \node[right] {\rmfamily исключения для системы контроля версий}; \\
+		};
+		
+		\draw (root) |- (sem1) (sem1) |- (hello);
+		\draw (root) |- (sem2) (sem2) |- (test1)
+		                       (sem2) |- (lsm)
+		                       (sem2) |- (test2)
+		                       (sem2) |- (test3)
+		                       (sem2) |- (plot);
+		\draw (root) |- (bin);
+		\draw (root) |- (lib) (lib) |- (graphlib)
+		                      (lib) |- (std);
+		\draw (root) |- (task1);
+		\draw (root) |- (task2);
+		\draw (root) |- (git);
+		\draw (root) |- (format);
+		\draw (root) |- (ignore);
+\end{tikzpicture}\end{flushleft}
+
+
+
+%%=====================================
+\section{Классическая первая программа}
+%%=====================================
+Наберите код классической первой программы (\code{hello.cpp}):
+
+\cppfile{projects/01/hello.cpp}
+
+Чтобы скомпилировать код, необходимо перейти в каталог всех проектов:
+
+\console'$ cd /path/to/your/projects'%$
+
+\noindent и уже оттуда выполнить команду:
+
+\console'$ g++ -Og -Wall -Wextra -pedantic -Ilib -o p 01/hello.cpp'%$
+
+Если компиляция прошла успешно, то на экране не появится никаких сообщений. Это может смущать на первых порах. Поэтому можно вывести список файлов в текущем каталоге, чтобы убедиться в появлении исполняемого файла с именем \code{p}.
+
+\begin{consolecode}
+$ ls
+01             lib           p
+\end{consolecode}
+
+Теперь можно запустить программу на исполнение:
+\begin{consolecode}
+$ ./p
+Hello, World!
+\end{consolecode}
+
+
+
+%%=============================
+\section{Редактирование текста}
+%%=============================
+{ % hot keys
+\newcommand*{\hotkey}[1]{\fbox{\texttt{\small #1}}}
+\newcommand*{\hotplus}{{\small\,+\,}}
+\newcommand*{\hotkeys}[2]{\hotkey{#1}\hotplus\hotkey{#2}}
+\newcommand*{\hotkeyss}[3]{\hotkey{#1}\hotplus\hotkey{#2}\hotplus\hotkey{#3}}
+
+Набор исходного текста "--- неотъемлемая часть разработки программ. Используйте <<горячие>> клавиши для~более быстрого редактирования. Краткий список наиболее популярных комбинаций, поддерживаемых даже простыми редакторами:
+
+\begin{longtable}[l]{@{}rp{0.7\textwidth}@{}}
+    \endhead
+    \endfoot
+
+    \hotkeys{Ctrl}{A}  & Выделить всё.\\[0.5em]
+
+    \hotkeys{Ctrl}{C}  & Скопировать выделение. \\
+    \hotkeys{Ctrl}{V}  & Вставить. \\[0.5em]
+
+    \hotkeys{Ctrl}{Z}  & Отменить последнее действие. \\[0.5em]
+
+    \hotkey{Home} & Переместить курсор в~начало\slash{}конец текущей строки. \\
+    \hotkey{End}  & \\[0.5em]
+
+    \hotkeys{Shift}{Home} & Выделить символы с~текущей позиции и до~начала\slash{}конца строки. \\
+    \hotkeys{Shift}{End}  & \\[0.5em]
+
+    \hotkeys{Ctrl}{Home} & Переместить курсор в~начало\slash{}конец файла. \\
+    \hotkeys{Ctrl}{End}  & \\
+\end{longtable}
+
+\noindent Дополнительные полезные комбинации в~\name{VS\,Code}:
+\begin{longtable}[l]{@{}rp{0.7\textwidth}@{}}
+    \endhead
+    \endfoot
+
+    \hotkeys{Ctrl}{\slash} & Комментировать\slash{}раскомментировать текущую строку или выделение. \\[0.5em]
+
+    \hotkeyss{Ctrl}{Shift}{\uparrow}   & Сместить текущую строку вверх\slash{}вниз. \\
+    \hotkeyss{Ctrl}{Shift}{\downarrow} & \\[0.5em]
+
+    \hotkeyss{Alt}{Shift}{\uparrow}   & Редактировать столбец. \\
+    \hotkeyss{Alt}{Shift}{\downarrow} & \\
+\end{longtable}
+
+Полезно научиться набирать текст вслепую, то есть не~глядя на~клавиатуру. В сочетании с~использованием горячих клавиш, это позволяет достичь существенного ускорения при~наборе исходного кода. Таким образом, остаётся больше времени для~размышлений над~структурой и логикой самой программы. В~качестве примера он-лайн клавиатурного тренажёра приведём \href{\typingtutorurl}{эту}\footnote{Он-лайн клавиатурный тренажёр: \nolinkurl{\typingtutorurl}} ссылку.
+
+} % hot keys
+
+
+
+%%====================
+\section{Unix утилиты}\label{sect:utils}
+%%====================
+Совместно с~командной средой \code{bash} (\textenglish{\textbf{b}ourne \textbf{a}gain \textbf{sh}ell}) поставляется широкий набор полезных программ, или утилит (\textenglish{utilities}).
+
+\console/$ cd dir/%$
+
+\textenglish{\textbf{c}hange \textbf{d}irectory} "--- перейти в~каталог \code{dir}. Если каталог опущен, то перейти в~домашний каталог. (Определяется значением переменной среды \code{HOME}.) Файловая система \textenglish{Unix} представляет собой единое дерево, и любой абсолютный путь начинается с~корня (\code{/}). Точка (\code{.}) означает текущий каталог, две точки (\code{..}) "--- родительский каталог.
+
+\console/$ cd ../%$
+
+Перейти в~родительский каталог.
+
+\console|$ cd /|%$
+
+Перейти в~корневой каталог.
+
+\console/$ pwd/%$
+
+\textenglish{\textbf{p}rint \textbf{w}orking \textbf{d}irectory} "--- вывести на~экран абсолютный путь к~текущему каталогу.
+
+\console/$ ls dir/%$
+
+\textenglish{\textbf{l}i\textbf{s}t} "--- вывести на~экран содержимое каталога \code{dir}. Если каталог опущен, то по~умолчанию используется текущий каталог.
+
+\console/$ man cmd/%$
+
+\textenglish{\textbf{man}ual} "--- вывести на~экран подробную справку о~команде \code{cmd}.
+
+\console/$ cmd --help/%$
+
+Вывести на~экран короткую справку о~команде \code{cmd}. Полезно, если утилита \code{man} недоступна.
+
+\console/$ mkdir dir/%$
+
+\textenglish{\textbf{m}a\textbf{k}e \textbf{dir}ectory} "--- создать каталог \code{dir}.
+
+\console/$ rmdir dir/%$
+
+\textenglish{\textbf{r}e\textbf{m}ove \textbf{dir}ectory} "--- удалить пустой каталог \code{dir}.
+
+\console/$ rm file/%$
+
+\textenglish{\textbf{r}e\textbf{m}ove} "--- удалить файл. Используя опцию \code{-r} можно рекурсивно удалить непустой каталог.
+
+\console/$ mv src dst/%$
+
+\textenglish{\textbf{m}o\textbf{v}e} "--- перемещает/переименовывает файл \code{src} в~\code{dst}. Имя \code{dst} может быть каталогом, тогда \code{mv} перемещает \code{src} туда.
+
+\console/$ cat file.../%$
+
+\textenglish{\textbf{cat}enate} "--- связывает файлы и выводит объединённое содержимое на~экран.
+
+\console/$ less file/%$
+
+Более мощный аналог утилиты \code{more} "--- постраничного фильтра для~просмотра файлов. Часто применяется для~буферизации вывода на~экран, используя конвейер:
+
+\console/$ odjdump -d prog | less/%$
+
+
+\console/$ vim file/%$
+
+\textenglish{\textbf{v}isual editor \textbf{im}proved} "--- открыть файл для~редактирования. Пройти вводный курс по~использованию этого мощного редактора можно запустив команду:
+
+\console/$ vimtutor/%$
+
+
+
+%%==================================
+\section{Интерпретатор \name{shell}}\label{sect:shell}
+%%==================================
+Когда система (в~терминале) выдаёт приглашение \code{\$} и вы вводите команды для~выполнения, вы имеете дело не с~ядром самой системы, а с~неким посредником, называемым интерпретатором команд, или \name{shell}\footnote{Более подробно об~интерпретаторе \name{shell} и других возможностях системы \textenglish{Unix} излагается, например, в~книге \fullcite{Kernighan:1992:ru}}. Это обычная программа, но она может делать удивительные вещи. Применение программы--посредника обеспечивает три главных преимущества:
+
+\begin{itemfeature}[itemsep=\baselineskip]
+    \item Сокращённые имена файлов: можно задать целое множество файлов в~качестве аргументов команде, указав шаблон для имён: \name{shell} будет искать файлы, имена которых соответствуют заданному шаблону.
+
+    \console/$ ls *.cpp *.c/%$
+
+    Вывести на~печать имена всех файлов в~текущем каталоге, которые оканчиваются на~\code{.cpp} или \code{.c}. Символ \code{*} в~шаблоне соответствует любой последовательности символов. Поддерживаются и другие специальные символы для~задания шаблона.
+
+
+    \item Переключение ввода--вывода: вывод любой программы можно направить в~файл, а не на~терминал, ввод можно получать из~файла, а не с~терминала. Ввод и вывод можно даже передать другим программам.
+
+    \console/$ ls *.cpp > cppfiles.txt/%$
+
+    Имена всех файлов, оканчивающихся на~\code{.cpp}, направить в~файл \code{cppfiles.txt}. Файл будет создан, если не~существует, или перезаписан, если существует.
+
+    \console/$ wc -l < main.cpp/%$
+
+    Подсчитать количество строк (опция \code{-l}) в~файле \code{main.cpp}.
+
+    \console/$ cat main.cpp | wc -l/%$
+
+    То же. Символ~\code{|} обозначает конвейер. Вывод команды слева передаётся на~ввод команде справа. Можно организовывать в~конвейере цепочку любой длины.
+
+    \console/$ wc -l main.cpp/%$
+
+    То же, используя лишь возможности самой утилиты \code{wc} (\textenglish{\textbf{w}ord \textbf{c}ount}).
+
+
+    \item Создание собственной среды: можно определить свои собственные команды и правила сокращений.
+\end{itemfeature}
+
+
+
+%%================
+\WhatToReadSection
+%%================
+\textcite{Stroustrup:2016:ru}: \textbf{глава~3}
+
+
+
+%%===============
+\ExercisesSection
+%%===============
+\begin{exercise}
+\item Напишите программу, которая по заданному \(n\) находит \(n\)-е число Фибоначчи \(F_n\). Числа Фибоначчи определяются соотношениями:
+\[
+F_n = F_{n-1} + F_{n-2},\quad F_1 = F_2 = 1.
+\]
+Необходимо ли хранить в памяти все вычисленные числа Фибоначчи?
+
+
+\item Вычислите и сравните левую и правую части тождеств:
+\begin{flushleft}
+    \begin{enumerate*}[label=\arabic*), itemjoin={\qquad}]
+        \item \(\sum\limits_{k=0}^{\infty}\dfrac{1}{(2k)!} = \dfrac{e + e^{-1}}{2}\);
+        \item \(\prod\limits_{k=1}^{\infty} \dfrac{4k^2}{4k^2 - 1} = \dfrac{\pi}{2}\);
+        \item \(e = \lim\limits_{n\to\infty} \dfrac{n}{\sqrt[n]{n!}}\);
+    \end{enumerate*}
+    \begin{flushright}
+        \begin{enumerate*}[label=\arabic*), itemjoin={;\qquad}, resume]
+            \item \(\dfrac{2}{1}\cdot
+            \left( \dfrac{4}{3} \right)^{\frac{1}{2}}\cdot
+            \left( \dfrac{6}{5}\dfrac{8}{7} \right)^{\frac{1}{4}}\cdot
+            \left( \dfrac{10}{9}\dfrac{12}{11}\dfrac{14}{13}\dfrac{16}{15} \right)^{\frac{1}{8}}\cdot
+            \ldots = e\).
+        \end{enumerate*}
+    \end{flushright}
+\end{flushleft}
+\end{exercise}
