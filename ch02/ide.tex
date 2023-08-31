@@ -85,14 +85,13 @@ S_{\varepsilon} = \SumN \varepsilon_i^2 = \SumN (y_i - a - b x_i)^2\quad\rightar
 %%====================
 \subparagraph{Сборка.}
 %%====================
-Чтобы собрать исполняемый файл из командной среды, или <<консоли>>, необходимо перейти в рабочий каталог, где располагается файл с исходным кодом:
+Чтобы собрать исполняемый файл из командной среды, или <<консоли>>, необходимо перейти в каталог с вашими проектами:
 
-\console`$ cd /path/to/your/working/directory`
+\console`$ cd /path/to/your/projects`
 
 \noindent и вызвать \GCC:
 
-\console`$ g++  -o lsm  -std=c++17 -pedantic -Wall  least_squares.cpp`
-
+\console`$ g++ -o bin/lsm -std=c++17 -pedantic -Wall -Wextra 02/least_squares.cpp`
 
 \begin{figure}[h]
 {\centering
@@ -117,44 +116,38 @@ S_{\varepsilon} = \SumN \varepsilon_i^2 = \SumN (y_i - a - b x_i)^2\quad\rightar
 \par\begin{itemfeature}
 \item забыли указать имя файла:
 \begin{consolecode}
-$ ./lsm
-usage: ./lsm  file_with_data
+$ bin/lsm
+usage: bin/lsm  file_with_data
 \end{consolecode}
 
 
 \item файл не существует:
 \begin{consolecode}
-$ ./lsm  not_exist.txt
+$ bin/lsm  not_exist.txt
 error: can't open file 'not_exist.txt'
 \end{consolecode}
 
 
 \item файл пуст:
 \begin{consolecode}
-$ ./lsm  empty.txt
+$ bin/lsm  02/empty.txt
 error: division by zero
 \end{consolecode}
 
 
 \item идеальный случай (рис.\,\ref{fig:lsm:a}), когда точки лежат строго на прямой:
 \begin{consolecode}
-$ ./lsm  line_exact.txt
+$ bin/lsm  02/line_exact.txt
 line_exact.txt  0.25 0  0.88 0
 \end{consolecode}
 
 
 \item реальный случай (рис.\,\ref{fig:lsm:b}), когда точки лежат вдоль прямой с некоторым разбросом:
 \begin{consolecode}
-$ ./lsm  line_approx.txt
+$ bin/lsm  02/line_approx.txt
 line_approx.txt  0.262479 0  0.873039 0
 \end{consolecode}
 \end{itemfeature}
-
-
-\noindent Приведённые данные расположены в архиве
-\begin{flushleft}
-    \yadisk{cpp-seminars/examples/02.zip}.
-\end{flushleft}
 
 
 
