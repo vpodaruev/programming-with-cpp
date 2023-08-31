@@ -167,12 +167,12 @@ Hello, World!
     \endhead
     \endfoot
 
-    \hotkeys{Ctrl}{A}  & Выделить всё \\[0.5em]
+    \hotkeys{Ctrl}{A} & Выделить всё \\[0.5em]
 
-    \hotkeys{Ctrl}{C}  & Скопировать выделение \\
-    \hotkeys{Ctrl}{V}  & Вставить \\[0.5em]
+    \hotkeys{Ctrl}{C} & Скопировать выделение \\
+    \hotkeys{Ctrl}{V} & Вставить \\[0.5em]
 
-    \hotkeys{Ctrl}{Z}  & Отменить последнее действие \\[0.5em]
+    \hotkeys{Ctrl}{Z} & Отменить последнее действие \\[0.5em]
 
     \hotkey{Home} & Переместить курсор в~начало\slash{}конец текущей строки \\
     \hotkey{End}  & \\[0.5em]
@@ -194,21 +194,25 @@ Hello, World!
     \hotkeyss{Ctrl}{Shift}{\uparrow}   & Сместить текущую строку вверх\slash{}вниз \\
     \hotkeyss{Ctrl}{Shift}{\downarrow} & \\[0.5em]
 
-    \hotkeyss{Alt}{Shift}{\uparrow}   & Редактировать столбец \\
-    \hotkeyss{Alt}{Shift}{\downarrow} & \\
+    \hotkeyss{Alt}{Shift}{\uparrow}   & Дубликат строки \\
+    \hotkeyss{Alt}{Shift}{\downarrow} & \\[0.5em]
+    
+    \hotkeyss{Ctrl}{Alt}{\uparrow}   & Редактировать столбец \\
+    \hotkeyss{Ctrl}{Alt}{\downarrow} & \\
 \end{longtable}
 } % hot keys
 
 Полезно научиться набирать текст вслепую, то есть не~глядя на~клавиатуру. В~сочетании с~использованием горячих клавиш, это позволяет достичь существенного ускорения при~наборе исходного кода. Таким образом, остаётся больше времени для~размышлений над~структурой и логикой самой программы. В~качестве примера он-лайн клавиатурного тренажёра приведём \href{\typingtutorurl}{эту}\footnote{Он-лайн клавиатурный тренажёр: \nolinkurl{\typingtutorurl}} ссылку.
 
-Аккуратно оформляйте код, соблюдая правила хорошего \href{\codestyleurl}{стиля}\footnote{Стиль кода: \nolinkurl{\codestyleurl}}. 
+Аккуратно оформляйте код, соблюдая правила хорошего \href{\codestyleurl}{стиля}\footnote{Стиль кода: \nolinkurl{\codestyleurl}}.
 
 Современные средства позволяют автоматически форматировать код согласно заданному стилю. Загрузите описание стиля \code{projects/.clang-format} из \href{\courseselfurl}{репозитория}. Затем откройте файл с~настройками \name{VS\,Code} и добавьте строку:
-\begin{minted}{json}
+
+\begin{minted}[fontsize=\small]{json}
     "editor.formatOnSave": true
 \end{minted}
 
-При~желании, можно изменить настройки стиля по вашему вкусу, отредактировав загруженный файл согласно \href{\clangformatdocurl}{документации}\footnote{Опции Clang-format: \nolinkurl{\clangformatdocurl}} \name{Clang-format}.
+При~желании, можно изменить настройки стиля по вашему вкусу, отредактировав загруженный файл согласно \href{\clangformatdocurl}{документации}\footnote{Опции Clang-format: \nolinkurl{\clangformatdocurl}} утилиты \name{Clang-format}.
 
 
 
@@ -348,6 +352,9 @@ F_n = F_{n-1} + F_{n-2},\quad F_1 = F_2 = 1.
 \]
 Необходимо ли хранить в памяти все вычисленные числа Фибоначчи?
 
+\item Напишите программу, которая принимает на входе число и печатает на экран его зеркальную копию, то есть, в <<перевёрнутом>> виде.
+
+\item Напишите функцию, которая принимает на входе целое число и возвращает ответ, является ли оно простым. Протестируйте работу вашей функции.
 
 \item Вычислите и сравните левую и правую части тождеств:
 \begin{flushleft}
