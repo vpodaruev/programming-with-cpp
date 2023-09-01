@@ -1,6 +1,6 @@
 # Programming with C++
 
-Supplementary course materials for students. Based on the textbook _Programming: Principles and Practice Using C++_ by Bjarne Stroustrup
+Supplementary course materials in Russian for students. Based on the textbook _Programming: Principles and Practice Using C++_ by Bjarne Stroustrup
 
 ![Instead of cover](images/cpp-programming.png)
 
