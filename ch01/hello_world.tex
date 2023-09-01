@@ -191,12 +191,12 @@ Hello, World!
 
     \hotkeys{Ctrl}{\slash} & Комментировать\slash{}раскомментировать текущую строку или выделение \\[0.5em]
 
-    \hotkeyss{Ctrl}{Shift}{\uparrow}   & Сместить текущую строку вверх\slash{}вниз \\
-    \hotkeyss{Ctrl}{Shift}{\downarrow} & \\[0.5em]
+    \hotkeys{Alt}{\uparrow}   & Сместить текущую строку или выделение вверх\slash{}вниз \\
+    \hotkeys{Alt}{\downarrow} & \\[0.5em]
 
-    \hotkeyss{Alt}{Shift}{\uparrow}   & Дублировать текущую строку вверх\slash{}вниз \\
+    \hotkeyss{Alt}{Shift}{\uparrow}   & Дублировать текущую строку или выделение вверх\slash{}вниз \\
     \hotkeyss{Alt}{Shift}{\downarrow} & \\[0.5em]
-    
+
     \hotkeyss{Ctrl}{Alt}{\uparrow}   & Редактировать столбец \\
     \hotkeyss{Ctrl}{Alt}{\downarrow} & \\
 \end{longtable}
@@ -204,15 +204,20 @@ Hello, World!
 
 Полезно научиться набирать текст вслепую, то есть не~глядя на~клавиатуру. В~сочетании с~использованием горячих клавиш, это позволяет достичь существенного ускорения при~наборе исходного кода. Таким образом, остаётся больше времени для~размышлений над~структурой и логикой самой программы. В~качестве примера он-лайн клавиатурного тренажёра приведём \href{\typingtutorurl}{эту}\footnote{Он-лайн клавиатурный тренажёр: \nolinkurl{\typingtutorurl}} ссылку.
 
-Аккуратно оформляйте код, соблюдая правила хорошего \href{\codestyleurl}{стиля}\footnote{Стиль кода: \nolinkurl{\codestyleurl}}.
+Используйте моноширинный шрифт для~кода, например, \name{JetBrains\,Mono}. По~желанию, его можно \href{\jetbrainsfonturl}{скачать}\footnote{Шрифты JetBrains Mono: \nolinkurl{\jetbrainsfonturl}} и \href{\setupfonturl}{установить}\footnote{Как установить шрифт в~систему: \nolinkurl{\setupfonturl}} в~систему. Чтобы указать шрифт редактору, откройте файл с~настройками \name{VS\,Code} и добавьте такие строки:
+\begin{minted}[fontsize=\small]{json}
+    "editor.fontFamily": "JetBrains Mono",
+    "editor.fontLigatures": false
+\end{minted}
+\noindent Если включить лигатуры, то некоторые составные операторы будут заменяться на более привычное начертание. Например, оператор \code{!=} будет выглядеть как \(\neq\).
 
-Современные средства позволяют автоматически форматировать код согласно заданному стилю. Загрузите описание стиля \code{projects/.clang-format} из \href{\courseselfurl}{репозитория}. Затем откройте файл с~настройками \name{VS\,Code} и добавьте строку:
+Аккуратно оформляйте код, соблюдая правила хорошего \href{\codestyleurl}{стиля}\footnote{Стиль кода: \nolinkurl{\codestyleurl}}. Современные средства позволяют автоматически форматировать код согласно заданному стилю. Описание стиля \code{projects/.clang-format} есть в~\href{\courseselfurl}{репозитории}. В~настройки добавьте:
 
 \begin{minted}[fontsize=\small]{json}
     "editor.formatOnSave": true
 \end{minted}
 
-При~желании, можно изменить настройки стиля по вашему вкусу, отредактировав загруженный файл согласно \href{\clangformatdocurl}{документации}\footnote{Опции Clang-format: \nolinkurl{\clangformatdocurl}} утилиты \name{Clang-format}.
+Можно изменить стиль по вашему вкусу. Для этого отредактируйте загруженный файл, используя \href{\clangformatdocurl}{документацию}\footnote{Опции Clang-format: \nolinkurl{\clangformatdocurl}} утилиты \name{Clang-format}.
 
 
 
