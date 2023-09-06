@@ -1,0 +1,49 @@
+% !TEX encoding   = UTF8
+% !TEX spellcheck = ru_RU
+% !TEX root = ../progress.tex
+
+\newcommand*{\ccurr}{\color{violet}}
+\newcommand*{\cctrl}{\color{DarkRed!80}}
+\newcommand*{\caddi}{\color{blue!70}}
+\newcommand*{\ctask}{\color{gray}}
+\newcommand*{\missed}{\color{gray}\strikeThrough}
+
+
+\begin{multicols}{2}\raggedcolumns\columnseprule=0.1pt
+\begin{tabbing}
+    планируется:\quad\=%
+            \phantom{[00.00]} \= \ldots \\[1em]
+
+    \>\cctrl         [xx.yy] зачёт \\
+    \>               [xx.yy] сдача задания №Y \\
+    \>               [xx.yy] \\
+    \>\>\ctask               сдача задания №Y \\
+    \>\cctrl         [xx.yy] контрольная работа №Z \\
+    \>               [xx.yy] \\
+    \>\>\ctask               сдача задания №Y \\
+    \>               [xx.yy] контрольный опрос (глава X) \\
+    \>\>\ctask               сдача задания №Y \\
+    \>               [xx.yy] контрольный опрос (глава X) \\
+    \>\>\ctask               сдача задания №Y \\
+    \>               [xx.yy] \\
+    \>\cctrl         [xx.yy] контрольная работа №Z \\
+    \>      \missed{{[xx.yy]}} праздник \\
+    \>               [xx.yy] контрольный опрос (глава X) \\
+    \>               [xx.yy] контрольный опрос (глава X) \\
+    \>\>\ctask               сдача задания №Y \\
+    \>               [xx.yy] \\
+    \>\>\ctask               сдача задания №Y \\
+    \>               [xx.yy] контрольный опрос (глава X) \\
+    \>\>\ctask               сдача задания №Y \\
+    \>               [xx.yy] контрольный опрос (глава X) \\
+    \>               [xx.yy] контрольный опрос (глава X) \\[1em]
+
+    > > >\>\ccurr    [xx.yy] контрольный опрос (глава X) \\[1em]
+
+    проведено:%
+	\>               [xx.yy] контрольный опрос (глава X) \\
+	\>               [xx.yy] контрольный опрос (глава X) \\
+    \>               [xx.yy] контрольный опрос (глава X) \\
+    \>               [xx.yy] первое занятие \\
+\end{tabbing}
+\end{multicols}

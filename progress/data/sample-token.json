@@ -1,0 +1,15 @@
+{
+  "comment": "Search for Google Console API, service account, and service account token",
+
+  "type": "service_account",
+  "project_id": "your-project-XXX",
+  "private_key_id": "XXXXXX",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nXXXXXX\n-----END PRIVATE KEY-----\n",
+  "client_email": "tutor@your-project-XXX.iam.gserviceaccount.com",
+  "client_id": "XXXXXX",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/your-project-XXX.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
