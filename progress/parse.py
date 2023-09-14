@@ -17,7 +17,7 @@ def set_rubicon(value):
 def numcol(table):
     num = "\\makebox[0.6em][r]{{{}}}"
     return [(r"\rowcolor{black!5}" if int(x) % 2 == 1 else "") + num.format(x)
-            for x in table.index.values + 1]
+            for x in table.index.values]
 
 
 def quiz_table_header(chapters):
