@@ -209,7 +209,7 @@ import pathlib
 import google_serve as gs
 
 
-parse.set_rubicon(0.6)
+parse.set_rubicon(0.7)
 datadir = pathlib.Path("data")
 gc = gs.get_sheet(datadir/"token.json")
 tabs = parse.read_json(datadir/"google_sheet.json")
