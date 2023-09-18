@@ -74,6 +74,7 @@ Token Token_stream::get()
   case '5':
   case '6':
   case '7':
+  case '8':
   case '9':
   {
     cin.putback(ch);  // put digit back into the input stream
@@ -127,6 +128,7 @@ double term ()
     case '*':
       left *= primary();
       t = ts.get();
+      break;
 
     case '/':
     {
@@ -161,7 +163,7 @@ double expression ()
       break;
 
     case '-':
-      left += term();  // evaluate Term and subtract
+      left -= term();  // evaluate Term and subtract
       t = ts.get();
       break;
 
