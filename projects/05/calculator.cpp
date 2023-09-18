@@ -3,24 +3,9 @@
 // "Software - Principles and Practice using C++" by Bjarne Stroustrup
 //
 
-/*
-  This file is known as calculator02buggy.cpp
-
-  I have inserted 5 errors that should cause this not to compile
-  I have inserted 3 logic errors that should cause the program to give wrong
-  results
-
-  First try to find and remove the bugs without looking in the book.
-  If that gets tedious, compare the code to that in the book (or posted
-  source code)
-
-  Happy hunting!
-
-*/
-
 #include <std_lib_facilities.h>
 
-lass Token
+class Token
 {
 public:
   char kind;     /// what kind of token
@@ -57,7 +42,7 @@ void Token_stream::putback(Token t)
   full = true;
 }
 
-Token get ()
+Token Token_stream::get()
 {
   if (full)  // do we already have a Token ready?
   {
@@ -117,7 +102,7 @@ double primary ()
     double d = expression();
     t = ts.get();
     if (t.kind != ')')
-      error("')' expected);
+      error("')' expected");
     return d;
   }
 
@@ -163,7 +148,7 @@ double term ()
 /// deal with + and -
 double expression ()
 {
-  double left = term(;  // read and evaluate a Term
+  double left = term();  // read and evaluate a Term
   Token t = ts.get();    // get the next token from token stream
 
   while (true)
@@ -190,6 +175,8 @@ double expression ()
 int main ()
 try
 {
+  double val{};
+
   while (cin)
   {
     Token t = ts.get();
