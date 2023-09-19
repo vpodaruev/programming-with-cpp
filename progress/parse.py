@@ -109,11 +109,14 @@ def print_main(table):
     for name in [item for item in table if item.startswith("task")]:
         m[name] = table[name].transform(lambda x: atom.task(x)[1])
         q[name] = table[name].transform(lambda x: atom.task(x)[0])
+        # filter task results to only those maximum had
+        t_max = q[name][0]
+        q[name] = q[name].transform(lambda x: t_max if x > t_max else x)
 
     q["qsum"] = np.zeros(len(q.index))
     for name in [item for item in table if item.startswith("quiz")]:
         c = table[name].transform(lambda x: atom.quiz(x)[0])
-        # filter quiz results to only those ideal student had done
+        # filter quiz results to only those maximum had
         if c[0] != 0.:
             q["qsum"] += c
     m["qsum"] = q["qsum"].transform(lambda x: round(x, 1))
