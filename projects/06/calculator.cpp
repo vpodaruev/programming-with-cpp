@@ -1,5 +1,5 @@
 /*
-  calculator08buggy.cpp
+  calculator08.cpp
 
   Helpful comments removed.
 
@@ -17,6 +17,8 @@ struct Token
   Token(char ch) : kind{ch}, value{0} {}
 
   Token(char ch, double val) : kind{ch}, value{val} {}
+
+  Token(char ch, string id) : kind{ch}, name{id} {}
 };
 
 class Token_stream
@@ -139,20 +141,20 @@ vector<Variable> var_table;
 
 double get_value (string s)
 {
-  for (int i = 0; i < var_table.size(); ++i)
-    if (var_table[i].name == s)
-      return var_table[i].value;
+  for (const auto& var : var_table)
+    if (var.name == s)
+      return var.value;
 
   error("get: undefined name ", s);
 }
 
 void set_value (string s, double d)
 {
-  for (int i = 0; i <= var_table.size(); ++i)
+  for (auto& var : var_table)
   {
-    if (var_table[i].name == s)
+    if (var.name == s)
     {
-      var_table[i].value = d;
+      var.value = d;
       return;
     }
   }
@@ -162,8 +164,8 @@ void set_value (string s, double d)
 
 bool is_declared (string s)
 {
-  for (int i = 0; i < var_table.size(); ++i)
-    if (var_table[i].name == s)
+  for (const auto& var : var_table)
+    if (var.name == s)
       return true;
 
   return false;
@@ -194,6 +196,7 @@ double primary ()
     t = ts.get();
     if (t.kind != ')')
       error("'(' expected");
+    return d;
   }
 
   case '-':
