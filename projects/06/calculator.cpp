@@ -1,10 +1,7 @@
-/*
-  calculator08.cpp
-
-  Helpful comments removed.
-
-  We have inserted 3 bugs that the compiler will catch and 3 that it won't.
-*/
+//
+// This is example code from Chapter 7.8 "Variables" of
+// "Software - Principles and Practice using C++" by Bjarne Stroustrup
+//
 
 #include <std_lib_facilities.h>
 
