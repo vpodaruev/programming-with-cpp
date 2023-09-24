@@ -53,6 +53,7 @@ constexpr char let = 'L';
 const string prompt = "> ";
 const string result = "= ";
 const string declkey = "let";
+const string quitkey = "quit";
 
 Token Token_stream::get()
 {
@@ -74,7 +75,7 @@ Token Token_stream::get()
   case '*':
   case '/':
   case '%':
-  case ';':
+  case print:
   case '=':
     return Token{ch};
 
@@ -102,15 +103,18 @@ Token Token_stream::get()
       string s;
       s += ch;
       while (cin.get(ch) && (isalpha(ch) || isdigit(ch)))
-        s = ch;
+        s += ch;
       cin.putback(ch);
 
       if (s == declkey)
         return Token{let};
 
+      if (s == quitkey)
+        return Token{quit};
+
       return Token{name, s};
     }
-    error("Bad token");
+    error("bad token");
   }
 }
 
@@ -123,10 +127,11 @@ void Token_stream::ignore(char c)
   }
   full = false;
 
-  char ch;
-  while (cin >> ch)
+  for (char ch; cin >> ch;)
+  {
     if (ch == c)
       return;
+  }
 }
 
 struct Variable
@@ -139,16 +144,18 @@ struct Variable
 
 vector<Variable> var_table;
 
-double get_value (string s)
+double get_value (const string& s)
 {
   for (const auto& var : var_table)
+  {
     if (var.name == s)
       return var.value;
+  }
 
   error("get: undefined name ", s);
 }
 
-void set_value (string s, double d)
+void set_value (const string& s, double d)
 {
   for (auto& var : var_table)
   {
@@ -162,16 +169,18 @@ void set_value (string s, double d)
   error("set: undefined name ", s);
 }
 
-bool is_declared (string s)
+bool is_declared (const string& s)
 {
   for (const auto& var : var_table)
+  {
     if (var.name == s)
       return true;
+  }
 
   return false;
 }
 
-double define_name (string var, double val)
+double define_name (const string& var, double val)
 {
   if (is_declared(var))
     error(var, " declared twice");
@@ -235,6 +244,15 @@ double term ()
       if (d == 0)
         error("divide by zero");
       left /= d;
+      break;
+    }
+
+    case '%':
+    {
+      double d = primary();
+      if (d == 0)
+        error("'%': divide by zero");
+      left = fmod(left, d);
       break;
     }
 
