@@ -18,9 +18,10 @@
 int find_next (const vector<string>& arr, const string& val, int start_pos)
 {
   for (size_t i = start_pos; i < arr.size(); ++i)
+  {
     if (val == arr[i])
       return i;
-
+  }
   error("value '" + val + "' not found");
 }
 

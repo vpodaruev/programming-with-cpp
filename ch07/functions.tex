@@ -79,7 +79,7 @@
 
 \jsonfile[firstline=5, lastline=5]{projects/.vscode/settings.json}
 
-Чтобы выполнить установку, необходимо явно вызвать команду: \code{Ctrl+Shift+P} и в~строке поиска набрать \code{cmake install}.
+Чтобы выполнить установку, необходимо явно вызвать команду: \code{Ctrl+Shift+P} и в~строке поиска набрать \code{cmake\,install}.
 
 Таким образом, исполняемый файл окажется в~каталоге \code{projects/bin}, как и ранее, когда мы непосредственно вызывали компилятор из~консоли.
 
@@ -245,17 +245,17 @@ constexpr int pow (int base, int exp) noexcept  // C++14
 
 В~начале мы должны отсортировать вектор имён, а затем синхронизировать его с~вектором возрастов, используя копии исходных массивов.
 
-\cppfile[firstline=47, lastline=55]{projects/07/name_age.cpp}
+\cppfile[firstline=48, lastline=56]{projects/07/name_age.cpp}
 
 Чтобы синхронизировать пары, будем брать имена из~нового, сортированного, массива и искать их позицию в~старом массиве-копии. Взяв элемент из~старого массива возрастов с~той же позицией, мы получим парный элемент для~текущего имени.
 
-\cppfile[firstline=27, lastline=45]{projects/07/name_age.cpp}
+\cppfile[firstline=28, lastline=46]{projects/07/name_age.cpp}
 
 \noindent Отметим, что в~исходных данных может быть несколько пар с~одинаковыми именами. Мы сохраним их все, соблюдая тот порядок, в~котором они были исходно (\emph{стабильная сортировка}).
 
 Вспомогательная функция поиска элемента в~массиве, начиная с~указанной позиции:
 
-\cppfile[firstline=18, lastline=25]{projects/07/name_age.cpp}
+\cppfile[firstline=18, lastline=26]{projects/07/name_age.cpp}
 
 
 
@@ -264,18 +264,18 @@ constexpr int pow (int base, int exp) noexcept  // C++14
 %%==============================================
 Тело \code{main} может выглядеть примерно таким образом:
 
-\cppfile[firstline=80, lastline=80]{projects/07/name_age.cpp}
-\cppfile[firstline=82, lastline=96]{projects/07/name_age.cpp}
+\cppfile[firstline=81, lastline=81]{projects/07/name_age.cpp}
+\cppfile[firstline=83, lastline=97]{projects/07/name_age.cpp}
 
 Мы разместили каждое логическое действие в~отдельной функции. Самое сложное из~ещё не~рассмотренных нами действий "--- это ввод данных от~пользователя.
 
-\cppfile[firstline=57, lastline=72]{projects/07/name_age.cpp}
+\cppfile[firstline=58, lastline=73]{projects/07/name_age.cpp}
 
 Пары будут считываться, до~тех пор, пока мы не~завершим ввод при~помощи \code{Ctrl+D} в~\name{Linux} или \code{Ctrl+Z} в~\name{Windows}. Или пока не~введём некорректное значение для~возраста (почему для~возраста?), например, символ \code{'|'}. Появится ли некорректная пара в~последнем случае?
 
 Вывод же на~печать пар имя/возраст теперь совсем не~составит труда.
 
-\cppfile[firstline=74, lastline=78]{projects/07/name_age.cpp}
+\cppfile[firstline=75, lastline=79]{projects/07/name_age.cpp}
 
 
 
