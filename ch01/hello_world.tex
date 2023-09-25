@@ -205,17 +205,14 @@ Hello, World!
 Полезно научиться набирать текст вслепую, то есть не~глядя на~клавиатуру. В~сочетании с~использованием горячих клавиш, это позволяет достичь существенного ускорения при~наборе исходного кода. Таким образом, остаётся больше времени для~размышлений над~структурой и логикой самой программы. В~качестве примера он-лайн клавиатурного тренажёра приведём \href{\typingtutorurl}{эту}\footnote{Он-лайн клавиатурный тренажёр: \nolinkurl{\typingtutorurl}} ссылку.
 
 Используйте моноширинный шрифт для~кода, например, \name{JetBrains\,Mono}. По~желанию, его можно \href{\jetbrainsfonturl}{скачать}\footnote{Шрифты JetBrains Mono: \nolinkurl{\jetbrainsfonturl}} и \href{\setupfonturl}{установить}\footnote{Как установить шрифт в~систему: \nolinkurl{\setupfonturl}} в~систему. Чтобы указать шрифт редактору, откройте файл с~настройками \name{VS\,Code} и добавьте такие строки:
-\begin{minted}[fontsize=\small]{json}
-    "editor.fontFamily": "JetBrains Mono",
-    "editor.fontLigatures": false
-\end{minted}
+
+\jsonfile[firstline=2, lastline=3]{projects/.vscode/settings.json}
+
 \noindent Если включить лигатуры, то некоторые составные операторы будут заменяться на более привычное начертание. Например, оператор \code{!=} будет выглядеть как \(\neq\).
 
 Аккуратно оформляйте код, соблюдая правила хорошего \href{\codestyleurl}{стиля}\footnote{Стиль кода: \nolinkurl{\codestyleurl}}. Современные средства позволяют автоматически форматировать код согласно заданному стилю. Описание стиля есть в~репозитории \courserepo{projects/.clang-format}. В~настройки добавьте:
 
-\begin{minted}[fontsize=\small]{json}
-    "editor.formatOnSave": true
-\end{minted}
+\jsonfile[firstline=4, lastline=4]{projects/.vscode/settings.json}
 
 Можно изменить стиль по вашему вкусу. Для этого отредактируйте загруженный файл, используя \href{\clangformatdocurl}{документацию}\footnote{Опции Clang-format: \nolinkurl{\clangformatdocurl}} утилиты \name{Clang-format}.
 
