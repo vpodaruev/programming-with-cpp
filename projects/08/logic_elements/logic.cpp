@@ -1,4 +1,4 @@
-#include "Logic.h"
+#include "logic.h"
 
 #include <stdexcept>
 

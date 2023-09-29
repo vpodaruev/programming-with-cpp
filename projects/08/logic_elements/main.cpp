@@ -1,6 +1,6 @@
 ﻿#include <iostream>
 
-#include "Logic.h"
+#include "logic.h"
 
 int main ()
 {
