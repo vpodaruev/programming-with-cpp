@@ -96,9 +96,13 @@ length(t)                 = 1.41421  [OK]
 %%=================================
 \section{Проект для \texttt{CMake}}
 %%=================================
-Скопируем проект, который создавали для калькулятора и слегка подправим, изменив имя и список файлов с исходным кодом (\code{08/vec/CMakeLists.txt}).
+Скопируем проект, который создавали для~калькулятора (см.~страницу~\pageref{sect:calcproj}) и слегка подправим, изменив имя и список файлов с~исходным кодом (\code{08/vec/CMakeLists.txt}).
 
 \cmakefile[firstline=3]{projects/08/vec/CMakeLists.txt}
+
+\noindent Этот проект необходимо также добавить в~корневой проект (\code{projects/CMakeLists.txt}).
+
+\cmakefile[firstline=14, lastline=14]{projects/CMakeLists.txt}
 
 
 
