@@ -6,23 +6,31 @@ int main ()
 {
   using logic::Element;
   using logic::ElementType;
+  using logic::Operation;
+  using logic::SignalState;
+  using logic::SourceState;
 
-  Element source1{ElementType::SIGNAL_ON};
-  Element source2{ElementType::SIGNAL_OFF};
-  Element add1{ElementType::ADD};
-  Element add2{ElementType::ADD};
-  Element or1{ElementType::OR};
+  Element src1{SourceState::on};
+  Element src2{SourceState::off};
+  Element and1{Operation::and_op};
+  Element and2{Operation::and_op, SignalState::inverted};
+  Element or1{Operation::or_op};
 
-  source1 >> ~~add1 >> ~add2;
-  source2 >> ~~add1;
+  src1 >> and1 >> ~and2;
+  src2 >> ~and1;
 
-  // source1 >> source2; // runtime error
+  //  src1 >> src2;  // runtime error
 
-  source1 >> ~or1;
-  source2 >> or1;
+  src1 >> ~or1;
+  src2 >> or1;
 
-  std::cout << "Add1: " << add1.IsSignal() << ", Add2: " << add2.IsSignal()
-            << ", Or1: " << or1.IsSignal() << std::endl;
+  std::cout << "src1: " << src1.signal() << ", src2: " << src2.signal()
+            << ", and1: " << and1.signal() << ", and2: " << and2.signal()
+            << ", or1: " << or1.signal() << std::endl;
 
-  return 0;
+  src2.set(SourceState::on);
+
+  std::cout << "src1: " << src1.signal() << ", src2: " << src2.signal()
+            << ", and1: " << and1.signal() << ", and2: " << and2.signal()
+            << ", or1: " << or1.signal() << std::endl;
 }

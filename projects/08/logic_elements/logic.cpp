@@ -1,82 +1,118 @@
+#include <stdexcept>
+
 #include "logic.h"
 
-#include <stdexcept>
+namespace {
+
+using logic::Element;
+
+void check_loop (const Element& loop, const Element& elem)
+{
+  if (&loop == &elem)
+    throw std::runtime_error{"loop detected"
+                             " in connections of logic elements"};
+
+  for (const auto& out : loop.outputs())
+    check_loop(out, elem);
+}
+
+}  // namespace
 
 namespace logic {
 
-void CheckLoop (const Element& loop, const Element& elem)
+Input::Input(Element& elem, SignalState st)
+    : m_elem{elem}, m_inv{st == SignalState::inverted}
 {
-  if (&loop == &elem)
-    throw std::runtime_error{
-        "loop detected in connections of logic elements"};
+}
 
-  for (const auto& output : loop.GetOutputs())
-    CheckLoop(output, elem);
+bool Input::signal() const
+{
+  bool res = element().signal();
+  return m_inv ? !res : res;
+}
+
+SignalState Input::state() const
+{
+  return m_inv ? SignalState::inverted : SignalState::direct;
+}
+
+Element::Element(Operation op, SignalState out)
+    : m_type{ElementType{int(op)}}, m_out_inv{out == SignalState::inverted}
+{
+}
+
+Element::Element(SourceState st)
+    : m_type{ElementType::source}, m_src_on{st == SourceState::on}
+{
+}
+
+bool Element::signal() const
+{
+  bool s = calc();
+  return m_out_inv ? !s : s;
+}
+
+SignalState Element::state() const
+{
+  return m_out_inv ? SignalState::inverted : SignalState::direct;
+}
+
+bool Element::calc() const
+{
+  switch (m_type)
+  {
+  case ElementType::source:
+    return m_src_on;
+
+  case ElementType::and_op:
+  {
+    for (const auto& in : inputs())
+    {
+      if (!in.signal())
+        return false;
+    }
+    return !inputs().empty();
+  }
+
+  case ElementType::or_op:
+  {
+    for (const auto& in : inputs())
+    {
+      if (in.signal())
+        return true;
+    }
+    return false;
+  }
+  }
+  throw std::logic_error{"unknown element type"};
+}
+
+void Element::set(SourceState st)
+{
+  if (m_type != ElementType::source)
+    throw std::runtime_error{"can't set state for non-source element"};
+
+  m_src_on = (st == SourceState::on);
 }
 
 Element& operator>> (Element& lhs, Input rhs)
 {
-  auto rhs_operation = rhs.GetElement().m_type;
+  auto op = rhs.element().m_type;
 
-  if (rhs_operation == ElementType::SIGNAL_OFF ||
-      rhs_operation == ElementType::SIGNAL_ON)
-  {
-    throw std::runtime_error(
-        "inputs for SIGNAL_ON/OFF elements are not allowed");
-  }
+  if (op == ElementType::source)
+    throw std::runtime_error{"inputs for source elements not allowed"};
 
-  CheckLoop(rhs.GetElement(), lhs);
+  check_loop(rhs.element(), lhs);
 
-  rhs.GetElement().m_inputs.push_back(Input(lhs, rhs.GetState()));
-  lhs.m_outputs.push_back(rhs.GetElement());
+  rhs.element().m_inputs.push_back(Input{lhs, rhs.state()});
+  lhs.m_outputs.push_back(rhs.element());
 
-  return rhs.GetElement();
+  return rhs.element();
 }
 
 Element& operator>> (Element& lhs, Element& rhs)
 {
-  return lhs >> Input{rhs, InputState::DIRECT};
-}
-
-bool Input::IsSignal() const
-{
-  bool res = GetElement().IsSignal();
-  if (m_inverted)
-    res = !res;
-  return res;
-}
-
-bool Element::IsSignal() const
-{
-  switch (m_type)
-  {
-  case ElementType::SIGNAL_OFF:
-    return false;
-  case ElementType::SIGNAL_ON:
-    return true;
-  case ElementType::ADD:
-  {
-    bool signal = !(GetInputs().empty());
-    for (const auto& input : GetInputs())
-    {
-      if (!input.IsSignal())
-      {
-        signal = false;
-        break;
-      }
-    }
-    return signal;
-  }
-  case ElementType::OR:
-  {
-    for (const auto& input : GetInputs())
-      if (input.IsSignal())
-        return true;
-    return false;
-  }
-  default:
-    throw std::logic_error("unsupported element type!");
-  }
+  return lhs >> Input{rhs, SignalState::direct};
 }
 
 }  // namespace logic
