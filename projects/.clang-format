@@ -23,6 +23,7 @@ BraceWrapping:
   SplitEmptyNamespace: true
 ColumnLimit:       76
 EmptyLineBeforeAccessModifier: Always
+LineEnding:        LF
 MaxEmptyLinesToKeep: 1
 PointerAlignment:  Left
 SpaceBeforeParens: Custom
