@@ -71,7 +71,6 @@ public:
   Input operator~() { return {*this, SignalState::inverted}; }
 
   friend Element& operator>> (Element& lhs, Input rhs);
-  friend Element& operator>> (Element& lhs, Element& rhs);
 
 private:
   InputContainer m_inputs;
@@ -82,6 +81,8 @@ private:
 
   bool calc () const;
 };
+
+Element& operator>> (Element& lhs, Element& rhs);
 
 }  // namespace logic
 
