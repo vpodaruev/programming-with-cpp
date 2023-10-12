@@ -13,3 +13,4 @@ include_directories(
 add_subdirectory(07/calculator)
 add_subdirectory(08/vec)
 add_subdirectory(08/logic_elements)
+add_subdirectory(11/shape_primitives)
