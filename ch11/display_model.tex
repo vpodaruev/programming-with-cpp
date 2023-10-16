@@ -57,15 +57,15 @@
 
 В~проект необходимо добавить файлы из~библиотеки \code{Graph\_lib}:
 
-\cmakefile[firstline=7, lastline=8]{projects/11/shape_primitives/CMakeLists.txt}
+\cmakefile[firstline=22, lastline=23]{projects/11/shape_primitives/CMakeLists.txt}
 \cmake'    # ...'
-\cmakefile[firstline=10, lastline=13]{projects/11/shape_primitives/CMakeLists.txt}
+\cmakefile[firstline=25, lastline=28]{projects/11/shape_primitives/CMakeLists.txt}
 
 \noindent которые будут подробно рассмотрены в~последующих \textbookref{главах} учебника. Классы этой библиотеки предоставляют нам сравнительно небольшой набор графических возможностей, реализованных на~основе библиотеки \name{FLTK}.
 
 Система сборки \name{CMake} имеет механизмы поиска <<внешних>> библиотек в~системе. Это позволяет уменьшить зависимость описания проекта от~платформы, оставляя при~этом возможность вручную задать конкретные пути к~ним в~процессе конфигурации. Для поиска библиотеки \name{FLTK}, а также её зависимости "--- библиотеки более низкого уровня \name{OpenGL}, нужно добавить следующие строки:
 
-\cmakefile[firstline=20, lastline=21]{projects/11/shape_primitives/CMakeLists.txt}
+\cmakefile[firstline=10, lastline=11]{projects/11/shape_primitives/CMakeLists.txt}
 
 \noindent Флаг \code{REQUIRED} указывает, что без~данного компонента невозможна успешная сборка проекта. Таким образом, мы получаем более раннюю диагностику в~виде ошибки на~этапе конфигурирования.
 
