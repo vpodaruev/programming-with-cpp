@@ -4,16 +4,6 @@ set(TARGET "shape_primitives")
 
 project(${TARGET} LANGUAGES CXX)
 
-add_executable(
-    ${TARGET}
-    main.cpp
-    ${LIB_DIR}/Graph_lib/Graph.cpp
-    ${LIB_DIR}/Graph_lib/GUI.cpp
-    ${LIB_DIR}/Graph_lib/Window.cpp
-)
-
-install(TARGETS ${TARGET})
-
 set(FLTK_SKIP_FLUID True)
 set(OpenGL_GL_PREFERENCE "GLVND")
 
@@ -27,6 +17,14 @@ include_directories(
 
 link_directories(
     ${FLTK_INCLUDE_DIR}/../lib
+)
+
+add_executable(
+    ${TARGET}
+    main.cpp
+    ${LIB_DIR}/Graph_lib/Graph.cpp
+    ${LIB_DIR}/Graph_lib/GUI.cpp
+    ${LIB_DIR}/Graph_lib/Window.cpp
 )
 
 target_link_libraries(
@@ -43,3 +41,5 @@ if(WIN32)
         fltk_z
     )
 endif()
+
+install(TARGETS ${TARGET})
