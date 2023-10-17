@@ -21,7 +21,7 @@ using namespace Graph_lib;
  * @param curve - closed polyline as points list
  * @return modified points list back
  */
-auto koch_fractal_step (std::list<Vec2d>&& curve)
+void koch_fractal_step (std::list<Vec2d>& curve)
 {
   auto prev = --curve.end();
   for (auto curr = curve.begin(); curr != curve.end(); ++curr)
@@ -34,7 +34,6 @@ auto koch_fractal_step (std::list<Vec2d>&& curve)
     curve.insert(curr, q);
     prev = curr;
   }
-  return curve;
 }
 
 auto max_edge_length (const std::list<Vec2d>& curve)
@@ -67,7 +66,7 @@ void draw_koch_snowflake (int w, int n)
     append(curve, ngon);
     curve.set_color(Color::blue);
 
-    ngon = koch_fractal_step(std::move(ngon));
+    koch_fractal_step(ngon);
     is_fine = max_edge_length(ngon) < 1.0;
     if (is_fine)
       n_steps.set_color(Color::red);
