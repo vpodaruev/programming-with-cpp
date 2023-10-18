@@ -13,5 +13,5 @@ include_directories(
 add_subdirectory(07/calculator)
 add_subdirectory(08/vec)
 add_subdirectory(08/logic_elements)
-add_subdirectory(11/shape_primitives)
-add_subdirectory(11/koch_snowflake)
+add_subdirectory(ch12/shape_primitives)
+add_subdirectory(ch12/koch_snowflake)

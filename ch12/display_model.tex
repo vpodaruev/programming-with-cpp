@@ -29,7 +29,7 @@
 \noindent Исходные файлы и проект программы размещены в~\href{\courserepourl}{репозитории}.
 
 \begin{center}
-    \code{projects/11/shape\_primitives}
+    \code{projects/ch12/shape\_primitives}
 \end{center}
 
 
@@ -41,12 +41,12 @@
 
 Тем не~менее, поскольку все наши типы и функции размещены в~отдельном пространстве имён, следует просто уточнить, что мы имеем в~виду класс \code{Graph\_lib::Rectangle}.
 
-\cppfile[firstline=1, lastline=10]{projects/11/shape_primitives/main.cpp}
-\cppfile[firstline=12, lastline=21]{projects/11/shape_primitives/main.cpp}
+\cppfile[firstline=1, lastline=10]{projects/ch12/shape_primitives/main.cpp}
+\cppfile[firstline=12, lastline=21]{projects/ch12/shape_primitives/main.cpp}
 \cpp`// ...`
-\cppfile[firstline=48, lastline=51]{projects/11/shape_primitives/main.cpp}
+\cppfile[firstline=48, lastline=51]{projects/ch12/shape_primitives/main.cpp}
 \cpp`// ...`
-\cppfile[firstline=113, lastline=113]{projects/11/shape_primitives/main.cpp}
+\cppfile[firstline=113, lastline=113]{projects/ch12/shape_primitives/main.cpp}
 
 
 
@@ -57,51 +57,19 @@
 
 В~проект необходимо добавить файлы из~библиотеки \code{Graph\_lib}:
 
-\cmakefile[firstline=22, lastline=23]{projects/11/shape_primitives/CMakeLists.txt}
+\cmakefile[firstline=22, lastline=23]{projects/ch12/shape_primitives/CMakeLists.txt}
 \cmake'    # ...'
-\cmakefile[firstline=25, lastline=28]{projects/11/shape_primitives/CMakeLists.txt}
+\cmakefile[firstline=25, lastline=28]{projects/ch12/shape_primitives/CMakeLists.txt}
 
 \noindent которые будут подробно рассмотрены в~последующих \textbookref{главах} учебника. Классы этой библиотеки предоставляют нам сравнительно небольшой набор графических возможностей, реализованных на~основе библиотеки \name{FLTK}.
 
 Система сборки \name{CMake} имеет механизмы поиска <<внешних>> библиотек в~системе. Это позволяет уменьшить зависимость описания проекта от~платформы, оставляя при~этом возможность вручную задать конкретные пути к~ним в~процессе конфигурации. Для поиска библиотеки \name{FLTK}, а также её зависимости "--- библиотеки более низкого уровня \name{OpenGL}, нужно добавить следующие строки:
 
-\cmakefile[firstline=10, lastline=11]{projects/11/shape_primitives/CMakeLists.txt}
+\cmakefile[firstline=10, lastline=11]{projects/ch12/shape_primitives/CMakeLists.txt}
 
 \noindent Флаг \code{REQUIRED} указывает, что без~данного компонента невозможна успешная сборка проекта. Таким образом, мы получаем более раннюю диагностику в~виде ошибки на~этапе конфигурирования.
 
 \todo{\ldots добавить дальнейшее описание\ldots}
-
-%Пути, дополнительные библиотеки и флаги компилятора зависят от платформы. Чтобы компилятор <<увидел>> заголовки (как правило, в угловых скобках), например:
-%
-%\begin{cppcode*}{linenos=false}
-%#include <FL/Fl.H>
-%#include <Graph_lib/Graph.h>
-%\end{cppcode*}
-%
-%\noindent необходимо добавить пути (абсолютные или относительно проектного файла) к ним в стандартные пути поиска компилятора:
-%
-%%\jsfile[firstline=20, lastline=20]{projects/11/shape_primitives/shape_primitives.qbs}
-%%\js'//      ...'
-%%\jsfile[firstline=24, lastline=24]{projects/11/shape_primitives/shape_primitives.qbs}
-%
-%Заметим, что путь к заголовкам \name{FLTK} добавлен в системные пути. Дело в том, что иногда <<вылезают>> предупреждения компилятора, которые относятся к файлам сторонних библиотек, например, о неиспользуемых параметрах в функциях. Изменение внешнего кода является зачастую плохим решением (почему?). Если есть такое желание, следует внести вклад в разработку данной библиотеки. Современная система глобальной коммуникации легко позволяет оказать помощь разработчикам. Примером, могут служить проекты в \name{GitLab} или \name{GitHub}. Альтернатива "--- просто сообщить компилятору, что код подключается из внешней (системной) библиотеки. Тогда он не станет выдавать нам предупреждения, которые относятся к этим файлам.
-%
-%Аналогично, чтобы компоновщик смог найти дополнительные библиотеки, которые мы перечислили, необходимо добавить пути к ним, если они располагаются вне стандартных каталогов, как в нашем случае:
-%
-%\todo{добавить фрагмент проектного файла}
-%%\jsfile[firstline=25, lastline=25]{projects/11/shape_primitives/shape_primitives.qbs}
-%
-%\noindent Также в \name{Windows} необходимо дать компоновщику опцию:
-%
-%\todo{добавить фрагмент проектного файла}
-%%\jsfile[firstline=26, lastline=26]{projects/11/shape_primitives/shape_primitives.qbs}
-%
-%\noindent которая сообщает, что мы собираемся использовать оконный интерфейс.
-%
-%Ниже перечислены сторонние библиотеки (\textenglish{third-party libraries}), от которых, в свою очередь, зависит \name{FLTK} под \name{Windows}:
-%
-%\todo{добавить фрагмент проектного файла}
-%%\jsfile[firstline=30, lastline=35]{projects/11/shape_primitives/shape_primitives.qbs}
 
 
 
@@ -117,22 +85,6 @@
     \item дополнительные флаги компоновщику.
 \end{itemfeature}
 Эти возможности присутствуют в каждой более-менее приличной среде разработки. Однако способы их добавления зависят от конкретной среды и могут сильно отличаться. Необходимо изучать соответствующие руководства.
-
-
-
-%%%=========================================
-%\paragraph{Проектный файл для \name{Linux}}
-%%%=========================================
-%тот же самый. Платформенно-зависимые свойства указаны в отдельном блоке:
-%
-%\jsfile[firstline=38, lastline=39]{projects/11/shape_primitives/shape_primitives.qbs}
-%\js'//          ...'
-%\jsfile[firstline=59, lastline=59]{projects/11/shape_primitives/shape_primitives.qbs}
-%
-%\noindent
-%Инструкции читаются при условии, что целевая платформа "--- это \name{Linux}.
-%
-%Поправьте пути и имена библиотек в соответствии с версией \name{FLTK} на вашем компьютере. Ниже показано, как посмотреть флаги компилятора (\code{cxxflags}, \code{ldflags}), которые использует \name{FLTK}.
 
 
 
@@ -154,7 +106,7 @@ $ fltk-config --ldflags
 
 \begin{consolecode}
 $ g++ -o bin/shapes -std=c++14 -pedantic $(fltk-config --cxxflags) \
-  projects/11/shape_primitives/main.cpp lib/Graph_lib/*.cpp \
+  projects/ch12/shape_primitives/main.cpp lib/Graph_lib/*.cpp \
   $(fltk-config --use-images --ldflags)
 \end{consolecode}
 
@@ -177,16 +129,17 @@ $ g++ -o bin/shapes -std=c++14 -pedantic $(fltk-config --cxxflags) \
 
 \cppfile[firstline=17, lastline=32]{projects/lib/poly/poly.cpp}
 
-\noindent
-\parbox[c]{0.65\textwidth}{\parindent=1.25cm%
 Изменение координат точки при вращении можно выразить через поворот самой системы координат:
+
+\noindent
+\parbox[c]{0.65\textwidth}{%
 \[
   \left\{ \begin{array}{l}
-    x\prime = \phantom{-}x\cos\alpha + y\sin\alpha, \\
-    y\prime =           -x\sin\alpha + y\cos\alpha.
+    x = x\prime\cos\alpha - y\prime\sin\alpha, \\
+    y = x\prime\sin\alpha + y\prime\cos\alpha.
   \end{array}\right.
 \]
-Используя эти соотношения, функция \code{rotated()} выполняет поворот точки \code{point} на угол \code{angle} относительно центра вращения \code{center} и возвращает новую точку. По умолчанию центр вращения расположен в начале координат.
+Используя эти соотношения, функция \code{rotated()} выполняет поворот точки \code{point} на угол \code{angle} относительно центра вращения \code{center} (положительный угол отмеряется против часовой стрелки) и возвращает новую точку. По умолчанию центр вращения расположен в начале координат.
 }\hfill\parbox[c]{0.35\textwidth}{%
 \begin{center}\begin{tikzpicture}[>=Stealth, very thick]
   \draw[help lines, step=.5cm] (-2, -1) grid (2.5, 2.5);
@@ -255,13 +208,13 @@ $ g++ -o bin/shapes -std=c++14 -pedantic $(fltk-config --cxxflags) \
 
 Шаг этого алгоритма можно выразить следующим образом, используя ранее приведённые вспомогательные функции:
 
-\cppfile[firstline=24, lastline=38]{projects/11/koch_snowflake/main.cpp}
+\cppfile[firstline=24, lastline=37]{projects/ch12/koch_snowflake/main.cpp}
 
 Контейнер \code{std::list} представляет собой двусвязный список. Обойти его элементы можно используя итераторы "--- обобщённый аналог указателей. Они будут рассмотрены в \textbookref{главе~20} учебника. Список передаётся по rvalue-ссылке, которая позволяет избежать ненужного копирования объекта. Подробнее об этих ссылках и перемещении (\code{std::move}) мы узнаем в \textbookref{главе~18} учебника.
 
 Вариант рисования снежинки Коха на базе правильного \code{n}-угольника в окне шириной~\code{w} средствами нашей библиотеки \code{Graph\_lib} можно записать так:
 
-\cppfile[firstline=52, lastline=81]{projects/11/koch_snowflake/main.cpp}
+\cppfile[firstline=51, lastline=80]{projects/ch12/koch_snowflake/main.cpp}
 
 Мы добавили текстовую метку в центре фигуры, показывающую номер шага алгоритма. И также учли, что дальнейшее измельчение кривой бессмысленно, если длина ребра становится менее~\(1\) пикселя. Функцию \code{max\_edge\_length()} предлагаем реализовать самостоятельно.
 
@@ -269,7 +222,7 @@ $ g++ -o bin/shapes -std=c++14 -pedantic $(fltk-config --cxxflags) \
 
 
 %=================
-\input{ch11/extra}
+\input{ch12/extra}
 %=================
 
 
