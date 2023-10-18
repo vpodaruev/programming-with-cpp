@@ -54,7 +54,7 @@ void draw_koch_snowflake (int w, int n)
 
   Vec2d c{w / 2., w / 2.};  // window center
   double r{0.85 * w / 2.};  // polygon radius
-  auto ngon = regular_polygon(n, c, r, -pi / 2.);
+  auto ngon = regular_polygon(n, c, r, pi / 2);
 
   Text n_steps{as_point(c), "0"};
   n_steps.set_color(Color::blue);
