@@ -11,7 +11,7 @@ Vec2d rotated (double angle, Vec2d point, Vec2d center)
   double sin_a = std::sin(angle);
 
   return center +
-         Vec2d{cos_a * r.x + sin_a * r.y, -sin_a * r.x + cos_a * r.y};
+         Vec2d{cos_a * r.x - sin_a * r.y, sin_a * r.x + cos_a * r.y};
 }
 
 std::list<Vec2d> regular_polygon (int n, Vec2d center, double radius,

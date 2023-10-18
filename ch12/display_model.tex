@@ -129,16 +129,17 @@ $ g++ -o bin/shapes -std=c++14 -pedantic $(fltk-config --cxxflags) \
 
 \cppfile[firstline=17, lastline=32]{projects/lib/poly/poly.cpp}
 
-\noindent
-\parbox[c]{0.65\textwidth}{\parindent=1.25cm%
 Изменение координат точки при вращении можно выразить через поворот самой системы координат:
+
+\noindent
+\parbox[c]{0.65\textwidth}{%
 \[
   \left\{ \begin{array}{l}
-    x\prime = \phantom{-}x\cos\alpha + y\sin\alpha, \\
-    y\prime =           -x\sin\alpha + y\cos\alpha.
+    x = x\prime\cos\alpha - y\prime\sin\alpha, \\
+    y = x\prime\sin\alpha + y\prime\cos\alpha.
   \end{array}\right.
 \]
-Используя эти соотношения, функция \code{rotated()} выполняет поворот точки \code{point} на угол \code{angle} относительно центра вращения \code{center} и возвращает новую точку. По умолчанию центр вращения расположен в начале координат.
+Используя эти соотношения, функция \code{rotated()} выполняет поворот точки \code{point} на угол \code{angle} относительно центра вращения \code{center} (положительный угол отмеряется против часовой стрелки) и возвращает новую точку. По умолчанию центр вращения расположен в начале координат.
 }\hfill\parbox[c]{0.35\textwidth}{%
 \begin{center}\begin{tikzpicture}[>=Stealth, very thick]
   \draw[help lines, step=.5cm] (-2, -1) grid (2.5, 2.5);

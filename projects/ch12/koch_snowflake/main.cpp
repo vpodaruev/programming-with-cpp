@@ -28,7 +28,7 @@ void koch_fractal_step (std::list<Vec2d>& curve)
   {
     auto p = lerp(*prev, *curr, 1. / 3);
     auto q = lerp(*prev, *curr, 2. / 3);
-    auto m = rotated(-pi / 3, p, q);
+    auto m = rotated(pi / 3, q, p);
     curve.insert(curr, p);
     curve.insert(curr, m);
     curve.insert(curr, q);
