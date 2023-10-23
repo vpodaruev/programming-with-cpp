@@ -55,17 +55,17 @@
 %%=================================================
 Рассмотрим внутренности проектного файла \code{CMakeLists.txt}, связанные с~добавлением внешней зависимости.
 
-В~проект необходимо добавить файлы из~библиотеки \code{Graph\_lib}:
+В~проект необходимо добавить файлы из~библиотеки \code{Graph\_lib}, которые будут подробно рассмотрены в~последующих \textbookref{главах} учебника. Классы этой библиотеки предоставляют нам сравнительно небольшой набор графических возможностей, реализованных на~основе библиотеки \name{FLTK}.
 
-\cmakefile[firstline=22, lastline=23]{projects/ch12/shape_primitives/CMakeLists.txt}
-\cmake'    # ...'
-\cmakefile[firstline=25, lastline=28]{projects/ch12/shape_primitives/CMakeLists.txt}
-
-\noindent которые будут подробно рассмотрены в~последующих \textbookref{главах} учебника. Классы этой библиотеки предоставляют нам сравнительно небольшой набор графических возможностей, реализованных на~основе библиотеки \name{FLTK}.
+\cmakefile[firstline=5, lastline=5]{projects/ch12/shape_primitives/CMakeLists.txt}
+\cmake'    # ... (our headers)'
+\cmakefile[firstline=6, lastline=13]{projects/ch12/shape_primitives/CMakeLists.txt}
+\cmake'    # ... (our sources)'
+\cmakefile[firstline=15, lastline=18]{projects/ch12/shape_primitives/CMakeLists.txt}
 
 Система сборки \name{CMake} имеет механизмы поиска <<внешних>> библиотек в~системе. Это позволяет уменьшить зависимость описания проекта от~платформы, оставляя при~этом возможность вручную задать конкретные пути к~ним в~процессе конфигурации. Для поиска библиотеки \name{FLTK}, а также её зависимости "--- библиотеки более низкого уровня \name{OpenGL}, нужно добавить следующие строки:
 
-\cmakefile[firstline=10, lastline=11]{projects/ch12/shape_primitives/CMakeLists.txt}
+\cmakefile[firstline=25, lastline=26]{projects/ch12/shape_primitives/CMakeLists.txt}
 
 \noindent Флаг \code{REQUIRED} указывает, что без~данного компонента невозможна успешная сборка проекта. Таким образом, мы получаем более раннюю диагностику в~виде ошибки на~этапе конфигурирования.
 
