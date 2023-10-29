@@ -98,11 +98,15 @@ length(t)                 = 1.41421  [OK]
 %%=================================
 Скопируем проект, который создавали для~калькулятора (см.~страницу~\pageref{sect:calcproj}) и слегка подправим, изменив имя и список файлов с~исходным кодом (\code{08/vec/CMakeLists.txt}).
 
-\cmakefile[firstline=3]{projects/08/vec/CMakeLists.txt}
+\cmakefile[firstline=3, lastline=11]{projects/08/vec/CMakeLists.txt}
+
+Мы добавили переменную \code{HEADERS}, поскольку у~нас появился заголовочный файл. Соответственно, можно расширить список исходных файлов. Заголовки не~будут напрямую участвовать в~процессе компиляции, но среда разработки сможет узнать об~их существовании и отобразить в~проекте.
+
+\cmakefile[firstline=15, lastline=15]{projects/08/vec/CMakeLists.txt}
 
 \noindent Этот проект необходимо также добавить в~корневой проект (\code{projects/CMakeLists.txt}).
 
-\cmakefile[firstline=14, lastline=14]{projects/CMakeLists.txt}
+\cmakefile[firstline=15, lastline=15]{projects/CMakeLists.txt}
 
 
 

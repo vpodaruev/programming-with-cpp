@@ -17,7 +17,7 @@ set(SOURCES
     ${LIB_DIR}/Graph_lib/Window.cpp
 )
 
-project(${TARGET} LANGUAGES CXX)
+project(${TARGET} CXX)
 
 set(FLTK_SKIP_FLUID True)
 set(FLTK_SKIP_FORMS True)
