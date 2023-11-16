@@ -32,7 +32,9 @@ void run_as_server (unsigned port)
       std::this_thread::sleep_for(500ms);
       continue;
     }
-    std::cout << "*** Has connection. Chat starts ***" << std::endl;
+    auto ip = stream.rdbuf()->remote_endpoint().address().to_string();
+    std::cout << "Has connection from " << ip << "\n"
+              << "*** Chat starts ***" << std::endl;
 
     while (stream && std::cin)
     {
