@@ -35,6 +35,12 @@ def quiz_table_header(chapters):
     """.format(tab, n, n+2, header)
 
 
+def filter_score(score):
+    """Leave results only when the maximum value (the first one) is set"""
+    t_max = score[0]
+    return score.transform(lambda x: t_max if x > t_max else x)
+
+
 def print_quiz(table):
     chapters = []
     table.columns = [item.strip() for item in table.columns]
@@ -50,10 +56,7 @@ def print_quiz(table):
         chapters += [name.split(maxsplit=2)[1]]
         m[name] = table[name].transform(lambda x: atom.quiz(x)[1])
         q[name] = table[name].transform(lambda x: atom.quiz(x)[0])
-
-    # filter quiz results to only those ideal student had done
-    for item in [x for x in q if q[x][0] == 0.]:
-        q[item] = 0.
+        q[name] = filter_score(q[name])
 
     q["?"] = q.sum(axis=1)
     q["?"] /= q["?"][0]  # first element is the maximum
@@ -102,6 +105,7 @@ def print_main(table):
     for name in [item for item in table if item.startswith("ctrl")]:
         m[name] = table[name].transform(lambda x: atom.ctrl(x)[1])
         q[name] = table[name].transform(lambda x: atom.ctrl(x)[0])
+        q[name] = filter_score(q[name])
 
     for name in [item for item in table if item in {"mark 1", "mark 2"}]:
         m[name] = table[name].transform(lambda x: atom.ctrl_mark(x))
@@ -109,16 +113,12 @@ def print_main(table):
     for name in [item for item in table if item.startswith("task")]:
         m[name] = table[name].transform(lambda x: atom.task(x)[1])
         q[name] = table[name].transform(lambda x: atom.task(x)[0])
-        # filter task results to only those maximum had
-        t_max = q[name][0]
-        q[name] = q[name].transform(lambda x: t_max if x > t_max else x)
+        q[name] = filter_score(q[name])
 
     q["qsum"] = np.zeros(len(q.index))
     for name in [item for item in table if item.startswith("quiz")]:
         c = table[name].transform(lambda x: atom.quiz(x)[0])
-        # filter quiz results to only those maximum had
-        if c[0] != 0.:
-            q["qsum"] += c
+        q["qsum"] += filter_score(c)
     m["qsum"] = q["qsum"].transform(lambda x: round(x, 1))
 
     for name in q:
