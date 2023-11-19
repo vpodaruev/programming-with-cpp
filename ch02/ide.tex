@@ -21,7 +21,7 @@
 
 
 %%==================================
-\section{Метод наименьших квадратов}
+\section{Метод наименьших квадратов}\label{sect:leastsquares}
 %%==================================
 
 %%===============================
@@ -30,9 +30,9 @@
 Рассмотрим регрессию (зависимость) следующего вида:
 \begingroup
 \newcommand{\SumN}{\ensuremath{\sum\limits_{i=1}^{N}}}
-\[
+\begin{equation}\label{eq:linearmodel}
 y_i = a + b x_i + \varepsilon_i,\quad i = \overline{1, N}.
-\]
+\end{equation}
 Среди всевозможных значений \(\{ a, b \}\) будем искать такие, которые приводят к~минимальной сумме квадратов отклонений (ошибок):
 \[
 S_{\varepsilon} = \SumN \varepsilon_i^2 = \SumN (y_i - a - b x_i)^2\quad\rightarrow\quad \min\limits_{a, b}.
