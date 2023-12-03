@@ -10,21 +10,12 @@ using Graph_lib::Point;
 
 struct My_window : Simple_window
 {
-  My_window(Point xy, int w, int h, const std::string& title)
-      : Simple_window{xy, w, h, title},
-        quit_button{Point{x_max() - 70, 20}, 70, 20, "Quit", cb_quit}
-  {
-    attach(quit_button);
-  }
+  My_window(Point xy, int w, int h, const std::string& title);
 
   Graph_lib::Button quit_button;
 
 private:
-  static void cb_quit (Address, Address widget)
-  {
-    auto& btn = Graph_lib::reference_to<Graph_lib::Button>(widget);
-    dynamic_cast<My_window&>(btn.window()).quit();
-  }
+  static void cb_quit (Address, Address widget);
 
   void quit () { hide(); }
 };

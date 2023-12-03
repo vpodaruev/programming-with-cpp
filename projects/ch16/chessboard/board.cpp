@@ -4,6 +4,19 @@
 
 using namespace Graph_lib;
 
+My_window::My_window(Point xy, int w, int h, const std::string& title)
+    : Simple_window{xy, w, h, title},
+      quit_button{Point{x_max() - 70, 20}, 70, 20, "Quit", cb_quit}
+{
+  attach(quit_button);
+}
+
+void My_window::cb_quit(Address, Address widget)
+{
+  auto& btn = Graph_lib::reference_to<Graph_lib::Button>(widget);
+  dynamic_cast<My_window&>(btn.window()).quit();
+}
+
 Cell::Type type_of_cell (int i, int j)
 {
   if (i % 2 == 0)
@@ -45,8 +58,8 @@ Chessboard::Chessboard(Point xy)
   {
     for (int j = 0; j < N; ++j)
     {
-      Point xy{margin + i * cw, margin + (N - 1 - j) * cw};
-      cells.push_back(new Cell{xy, cb_clicked, type_of_cell(i, j)});
+      Point pos{margin + i * cw, margin + (N - 1 - j) * cw};
+      cells.push_back(new Cell{pos, cb_clicked, type_of_cell(i, j)});
       attach(cells[cells.size() - 1]);
     }
   }
