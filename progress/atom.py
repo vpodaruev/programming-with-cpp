@@ -31,8 +31,8 @@ def name_short(s):
 
 def lang(s):
     langs = s.split(',')
-    if 2 < len(langs):
-        s = ", ".join(langs[:1] + [r"\ldots"])
+    if 1 < len(langs):
+        s = langs[0] + r", \ldots"
     return r"\texttt{\small " + s.replace('#', r'\#') + "}"
 
 

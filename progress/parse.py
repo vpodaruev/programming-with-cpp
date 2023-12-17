@@ -78,11 +78,11 @@ def print_quiz(table):
 
 def print_main(table):
     print(r"""\par\noindent
-    \begin{tabular}{r l lc l ccc ccc c l ccc}
+    \begin{tabular}{r l lc l ccc ccc c l ccc l c}
     \toprule
-    & & \multicolumn{2}{c}{начальный уровень} && \multicolumn{7}{c}{контрольно-проверочные мероприятия} && \multicolumn{3}{c}{зачёт} \\
+    & & \multicolumn{2}{c}{начальный уровень} && \multicolumn{7}{c}{контрольно-проверочные мероприятия} && \multicolumn{3}{c}{зачёт} && \\
     \cline{3-4}\cline{6-12}\cline{14-16}
-    \rule{0pt}{12pt}\makebox[0.6em][r]{№} & Фамилия Имя Отчество & языки & \test && \ctrl{1} & \task{1} & \ctrl{2} & \task{2}  & \qsum && ? & \(\star\) & отметка \\
+    \rule{0pt}{12pt}\makebox[0.6em][r]{№} & Фамилия Имя Отчество & языки & \test && \ctrl{1} & \task{1} & \ctrl{2} & \task{2}  & \qsum && ? & \(\star\) & отметка && проект\\
     \midrule
     """)
     table.columns = [item.strip() for item in table.columns]
@@ -92,7 +92,7 @@ def print_main(table):
                      columns=["name", "lang", "test", "|",
                               "ctrl 1", "mark 1", "task 1",
                               "ctrl 2", "mark 2", "task 2",
-                              "qsum", "|", "?", "bonus", "mark"])
+                              "qsum", "|", "?", "bonus", "mark", "|", "project"])
 
     m["name"] = table["name"].transform(atom.name)
     m["lang"] = table["lang"].transform(atom.lang)
@@ -133,6 +133,9 @@ def print_main(table):
 
     if "mark" in table:
         m["mark"] = table["mark"].transform(lambda x: atom.exam_mark(x))
+
+    if "project" in table:
+        m["project"] = table["project"].transform(lambda x: atom.exam_mark(x))
 
     m.insert(0, "#", numcol(m))
 
