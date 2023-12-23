@@ -25,3 +25,6 @@ add_subdirectory(ch13/hexagon_tile)
 add_subdirectory(ch14/logic_shapes)
 
 add_subdirectory(ch15/least_squares)
+
+add_subdirectory(ch16/chessboard)
+add_subdirectory(ch16/checkers)
